@@ -17,7 +17,6 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useState } from 'react';
-import { getCities } from '@/lib/cities';
 
 export default function EventsWithSearch({
   events,
@@ -40,6 +39,12 @@ export default function EventsWithSearch({
     );
   });
 
+  const resetFields = () => {
+    setQuery('');
+    setCategory('');
+    setCity('');
+  };
+
   // const city_names = (await getCities())
   //   .map((city) => city.city_name)
   //   .filter((city_name): city_name is string => typeof city_name === 'string');
@@ -55,7 +60,7 @@ export default function EventsWithSearch({
           value={query}
         />
         <div className='w-full flex gap-2 flex-[1]'>
-          <Select onValueChange={setCategory}>
+          <Select value={category} onValueChange={setCategory}>
             <SelectTrigger className='w-[180px] py-6'>
               <SelectValue placeholder='Event Category' />
             </SelectTrigger>
@@ -70,7 +75,7 @@ export default function EventsWithSearch({
               </SelectGroup>
             </SelectContent>
           </Select>
-          <Select onValueChange={setCity}>
+          <Select value={city} onValueChange={setCity}>
             <SelectTrigger className='w-[180px] py-6'>
               <SelectValue placeholder='City' />
             </SelectTrigger>
@@ -85,8 +90,10 @@ export default function EventsWithSearch({
               </SelectGroup>
             </SelectContent>
           </Select>
-          <Button className='flex-[1.5] w-full h-13' type='submit'>
-            Search
+          <Button
+            className='flex-[1.5] w-full h-13 hover:cursor-pointer'
+            onClick={resetFields}>
+            Reset
           </Button>
         </div>
       </div>
@@ -105,6 +112,7 @@ export default function EventsWithSearch({
                   alt={event.event_name ?? ''}
                   fill
                   className='object-cover'
+                  //onError={() => setImgSrc('/placeholder.svg')}
                 />
               </div>
 

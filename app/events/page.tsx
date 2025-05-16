@@ -1,18 +1,4 @@
-import { DropdownMenuCheckboxes } from '@/components/dropdown';
-import { EventCard } from '@/components/event-card';
-import Events from '@/components/events-grid';
 import EventsWithSearch from '@/components/events-grid-with-search';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 import { getEvents } from '@/lib/events';
 
 export default async function EventPage() {

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Instagram, Globe } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
+import { Metadata } from 'next';
 
 export async function generateStaticParams() {
   const events = await getEvents();
@@ -13,19 +14,41 @@ export async function generateStaticParams() {
   return slugs;
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const event = await getEventBySlug(slug);
+
+  return {
+    title: event?.metadata.event_name || 'Event Details',
+    description: event?.metadata.description,
+    openGraph: {
+      images: [
+        {
+          url: event?.metadata.image || '/placeholder.svg',
+          alt: event?.metadata.event_name || 'Event Image',
+        },
+      ],
+    },
+  };
+}
+
 export default async function EventPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const { slug } = params;
+  const { slug } = await params;
   const event = await getEventBySlug(slug);
 
   if (!event) {
     notFound();
   }
 
-  const { metadata, content } = event;
+  const { metadata } = event;
   const {
     event_name,
     location_name,
@@ -33,7 +56,7 @@ export default async function EventPage({
     city,
     state,
     zip_code,
-    country,
+    //country,
     date,
     start_time,
     end_time,
@@ -119,7 +142,7 @@ export default async function EventPage({
 
             <div className='border rounded-lg p-4'>
               <div className='flex items-center mb-2'>
-                <span className='text-xl font-bold'>${price}</span>
+                <span className='text-xl font-bold'>${price}+</span>
                 <span className='ml-2 text-xs uppercase tracking-wider text-muted-foreground'>
                   Ticket Price
                 </span>
@@ -131,7 +154,7 @@ export default async function EventPage({
 
               <p className='text-sm text-muted-foreground'>
                 Please check the website, as prices and availability are subject
-                to change.
+                to change. Only starting prices are listed.
               </p>
             </div>
           </div>

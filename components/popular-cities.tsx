@@ -1,12 +1,13 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { getCities } from '@/lib/cities';
+import { ChevronRight } from 'lucide-react';
 
 export async function PopularCities() {
   const cities = await getCities(6);
 
   return (
-    <section className='bg-gray-50 py-16 rounded-2xl'>
+    <section className='bg-gray-50 w-screen py-16'>
       <div className='container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
         <h2 className='text-3xl font-bold text-center mb-12'>Popular Cities</h2>
 
@@ -42,8 +43,9 @@ export async function PopularCities() {
         <div className='mt-8 text-center'>
           <Link
             href='/cities'
-            className='inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition duration-200'>
+            className='inline-flex items-center px-4 py-2 text-black font-bold'>
             View All Cities
+            <ChevronRight className='ml-2 h-4 w-4' />
           </Link>
         </div>
       </div>

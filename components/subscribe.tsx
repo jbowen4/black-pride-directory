@@ -1,5 +1,15 @@
 'use client';
 
+import { z } from 'zod';
+import Link from 'next/link';
+import { toast } from 'sonner';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { NewsletterFormSchema } from '@/lib/schemas';
+import { subscribe } from '@/lib/actions';
+
+type Inputs = z.infer<typeof NewsletterFormSchema>;
+
 import type React from 'react';
 
 import { useState } from 'react';
@@ -7,15 +17,28 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
 export function Subscribe() {
-  const [email, setEmail] = useState('');
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<Inputs>({
+    resolver: zodResolver(NewsletterFormSchema),
+    defaultValues: {
+      email: '',
+    },
+  });
 
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle subscription logic here
-    console.log(`Subscribing email: ${email}`);
-    // You would typically send this to your API
-    alert(`Thanks for subscribing with ${email}!`);
-    setEmail('');
+  const processForm: SubmitHandler<Inputs> = async (data) => {
+    const result = await subscribe(data);
+
+    if (result?.error) {
+      toast.error('An error occurred! Please try again.');
+      return;
+    }
+
+    toast.success('Subscribed successfully!');
+    reset();
   };
 
   return (
@@ -30,24 +53,33 @@ export function Subscribe() {
             <p className='text-muted-foreground mb-8'>
               Subscribe to stay up to date with all the latest events &
               resources in the queer Black community <br />
-              <em>(And we won't email you much, we promise!)</em>
+              <em>(And we won&rsquo;t email you much, we promise!)</em>
             </p>
 
             <form
-              onSubmit={handleSubscribe}
+              onSubmit={handleSubmit(processForm)}
               className='flex flex-col sm:flex-row gap-3 justify-center'>
               <Input
                 type='email'
+                id='email'
+                autoComplete='email'
                 placeholder='Enter your email'
-                value={email}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setEmail(e.target.value)
-                }
+                {...register('email')}
                 required
                 className='max-w-md'
               />
-              <Button type='submit'>Subscribe</Button>
+              <Button
+                type='submit'
+                disabled={isSubmitting}
+                className='disabled:opacity-50 hover:cursor-pointer'>
+                {isSubmitting ? 'Submitting...' : 'Subscribe'}
+              </Button>
             </form>
+            {errors.email?.message && (
+              <p className='ml-1 mt-2 text-sm text-rose-400'>
+                {errors.email.message}
+              </p>
+            )}
           </div>
         </div>
       </div>

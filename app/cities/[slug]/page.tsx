@@ -5,9 +5,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Instagram, Globe } from 'lucide-react';
-import { formatDate } from '@/lib/utils';
 import { getEvents } from '@/lib/events';
 import Events from '@/components/events-grid';
+import { Metadata } from 'next';
 
 export async function generateStaticParams() {
   const cities = await getCities();
@@ -15,12 +15,34 @@ export async function generateStaticParams() {
   return slugs;
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const event = await getCityBySlug(slug);
+
+  return {
+    title: event?.metadata.event_name || 'Event Details',
+    description: event?.metadata.description,
+    openGraph: {
+      images: [
+        {
+          url: event?.metadata.image || '/placeholder.svg',
+          alt: event?.metadata.event_name || 'Event Image',
+        },
+      ],
+    },
+  };
+}
+
 export default async function CityPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const { slug } = params;
+  const { slug } = await params;
   const city = await getCityBySlug(slug);
   const events = await getEvents();
   const filteredEvents = events.filter(
@@ -32,10 +54,10 @@ export default async function CityPage({
     notFound();
   }
 
-  const { metadata, content } = city;
+  const { metadata } = city;
   const {
     event_name,
-    city_name,
+    //city_name,
     image,
     organizers,
     sponsors,

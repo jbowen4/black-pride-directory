@@ -1,45 +1,5 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { CalendarIcon, MapPinIcon } from 'lucide-react';
-import { EventCard } from './event-card';
 import { getEvents } from '@/lib/events';
 import Events from './events-grid';
-
-// Sample event data
-// const events = [
-//   {
-//     id: '1',
-//     name: 'Black Pride Festival',
-//     image: '/placeholder.svg?height=200&width=300',
-//     city: 'Atlanta',
-//     date: 'June 15, 2025',
-//     slug: 'black-pride-festival',
-//   },
-//   {
-//     id: '2',
-//     name: 'Community Mixer',
-//     image: '/placeholder.svg?height=200&width=300',
-//     city: 'New York',
-//     date: 'July 8, 2025',
-//     slug: 'community-mixer',
-//   },
-//   {
-//     id: '3',
-//     name: 'Pride Parade',
-//     image: '/placeholder.svg?height=200&width=300',
-//     city: 'Chicago',
-//     date: 'August 22, 2025',
-//     slug: 'pride-parade',
-//   },
-//   {
-//     id: '4',
-//     name: 'LGBTQ+ Conference',
-//     image: '/placeholder.svg?height=200&width=300',
-//     city: 'Los Angeles',
-//     date: 'September 5, 2025',
-//     slug: 'lgbtq-conference',
-//   },
-// ];
 
 export async function UpcomingEvents() {
   const events = await getEvents(4);

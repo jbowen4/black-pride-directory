@@ -4,6 +4,11 @@ import { TeamMember } from '@/components/team-member';
 import { FaqSection } from '@/components/faq-section';
 import { countEvents } from '@/lib/events';
 import { countCities } from '@/lib/cities';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About Us',
+};
 
 export default function AboutPage() {
   const eventCount = countEvents();
