@@ -1,47 +1,50 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { getCities } from '@/lib/cities';
 
 // Define the city data
-const cities = [
-  {
-    name: 'New York',
-    image: '/placeholder.svg?height=300&width=400',
-    slug: 'new-york',
-  },
-  {
-    name: 'Los Angeles',
-    image: '/placeholder.svg?height=300&width=400',
-    slug: 'los-angeles',
-  },
-  {
-    name: 'Chicago',
-    image: '/placeholder.svg?height=300&width=400',
-    slug: 'chicago',
-  },
-  {
-    name: 'Atlanta',
-    image: '/placeholder.svg?height=300&width=400',
-    slug: 'atlanta',
-  },
-  {
-    name: 'Miami',
-    image: '/placeholder.svg?height=300&width=400',
-    slug: 'miami',
-  },
-  {
-    name: 'San Francisco',
-    image: '/placeholder.svg?height=300&width=400',
-    slug: 'san-francisco',
-  },
-];
+// const cities = [
+//   {
+//     name: 'New York',
+//     image: '/placeholder.svg?height=300&width=400',
+//     slug: 'new-york',
+//   },
+//   {
+//     name: 'Los Angeles',
+//     image: '/placeholder.svg?height=300&width=400',
+//     slug: 'los-angeles',
+//   },
+//   {
+//     name: 'Chicago',
+//     image: '/placeholder.svg?height=300&width=400',
+//     slug: 'chicago',
+//   },
+//   {
+//     name: 'Atlanta',
+//     image: '/placeholder.svg?height=300&width=400',
+//     slug: 'atlanta',
+//   },
+//   {
+//     name: 'Miami',
+//     image: '/placeholder.svg?height=300&width=400',
+//     slug: 'miami',
+//   },
+//   {
+//     name: 'San Francisco',
+//     image: '/placeholder.svg?height=300&width=400',
+//     slug: 'san-francisco',
+//   },
+// ];
 
-export function PopularCities() {
+export async function PopularCities() {
+  const cities = await getCities(6);
+
   return (
     <section className='bg-gray-50 py-16 rounded-2xl'>
       <div className='container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
         <h2 className='text-3xl font-bold text-center mb-12'>Popular Cities</h2>
 
-        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
           {cities.map((city) => (
             <Link
               key={city.slug}

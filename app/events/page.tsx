@@ -1,5 +1,6 @@
 import { DropdownMenuCheckboxes } from '@/components/dropdown';
 import { EventCard } from '@/components/event-card';
+import Events from '@/components/events-grid';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -11,8 +12,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { getEvents } from '@/lib/events';
 
-const events = [
+/*const events = [
   {
     id: '1',
     name: 'Black Pride Festival',
@@ -125,9 +127,11 @@ const events = [
     date: 'October 25, 2025',
     slug: 'health-wellness-fair',
   },
-];
+]; */
 
-export default function EventPage() {
+export default async function EventPage() {
+  const events = await getEvents();
+
   return (
     <>
       <div className='container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12'>
@@ -175,10 +179,13 @@ export default function EventPage() {
           </div>
         </div>
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6'>
-          {events.map((event) => (
-            <EventCard key={event.id} event={event} />
-          ))}
+          <Events events={events} />
         </div>
+        {/* <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6'>
+          {events.map((event) => (
+            <EventCard key={event.slug} event={event} />
+          ))}
+        </div> */}
       </div>
     </>
   );

@@ -24,7 +24,9 @@ export function Header() {
 
         {/* Right side - CTA Button */}
         <div className='flex items-center gap-4'>
-          <Button className='hidden md:inline-flex'>Join mailing list</Button>
+          <Button className='hidden md:inline-flex' asChild>
+            <Link href='/#subscribe'>Join mailing list</Link>
+          </Button>
 
           {/* Mobile menu */}
           <Sheet>
@@ -37,7 +39,9 @@ export function Header() {
             <SheetContent className='p-3' side='right'>
               <div className='flex flex-col gap-6 py-6'>
                 <Navbar orientation='vertical' />
-                <Button className='w-full'>Join mailing list</Button>
+                <Button className='w-full' asChild>
+                  <Link href='/#subscribe'>Join mailing list</Link>
+                </Button>
               </div>
             </SheetContent>
           </Sheet>

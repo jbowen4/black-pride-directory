@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { ChevronRight } from 'lucide-react';
+import Link from 'next/link';
 
 export function MainBanner() {
   return (
@@ -13,10 +14,12 @@ export function MainBanner() {
         </p>
 
         <div className='flex justify-center'>
-          <Button size='lg'>
-            Find events
-            <ChevronRight className='ml-2 h-4 w-4' />
-          </Button>
+          <Link href='/events'>
+            <Button size='lg' className='hover:cursor-pointer'>
+              Find events
+              <ChevronRight className='ml-2 h-4 w-4' />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

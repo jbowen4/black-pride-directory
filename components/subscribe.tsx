@@ -19,7 +19,7 @@ export function Subscribe() {
   };
 
   return (
-    <section className='py-16'>
+    <section id='subscribe' className='py-16'>
       <div className='container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
         <div className='bg-gray-50 rounded-2xl p-8 md:p-12'>
           <div className='max-w-3xl mx-auto text-center'>
