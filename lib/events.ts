@@ -28,6 +28,7 @@ export type EventMetadata = {
   instagram?: string;
   website?: string;
   description?: string;
+  categories?: string[];
   slug: string;
 };
 

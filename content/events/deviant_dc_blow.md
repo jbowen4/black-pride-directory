@@ -17,4 +17,5 @@ price: 65
 instagram: 'deviantevents'
 website: 'https://www.deviant.live/party/dcblow'
 description: 'DC Black Pride. Get ready to GLOW ✨. Vibes by @thejashjay & @jsport_'
+categories: ['Sex']
 ---

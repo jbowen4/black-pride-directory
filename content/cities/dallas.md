@@ -1,5 +1,6 @@
 ---
-name: 'Dallas Southern Pride'
+event_name: 'Dallas Southern Pride'
+city_name: "Dallas"
 instagram: 'dallassouthernpride'
 website: 'https://dallassouthernpride.com/'
 image: '/images/dallas.jpg'

@@ -10,7 +10,8 @@ export type City = {
 };
 
 export type CityMetadata = {
-  name?: string;
+  event_name?: string;
+  city_name?: string;
   instagram?: string;
   website?: string;
   image?: string;
@@ -19,6 +20,18 @@ export type CityMetadata = {
   description?: string;
   slug: string;
 };
+
+export async function getCityBySlug(slug: string): Promise<City | null> {
+  try {
+    const filePath = path.join(rootDirectory, `${slug}.md`);
+    const fileContent = fs.readFileSync(filePath, { encoding: 'utf8' });
+    const { data, content } = matter(fileContent);
+    return { metadata: { ...data, slug }, content };
+  } catch (error) {
+    console.error('Error reading file:', error);
+    return null;
+  }
+}
 
 export async function getCities(limit?: number): Promise<CityMetadata[]> {
   try {

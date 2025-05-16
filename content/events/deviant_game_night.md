@@ -17,4 +17,5 @@ price: 0
 instagram: 'deviantevents'
 website: 'https://www.deviant.live/party/gamenightdc'
 description: 'Deviant Events is a Sex+, Body+ party hosted by queer people of color to celebrate queer people of color.'
+categories: ['Sex']
 ---

@@ -1,5 +1,6 @@
 ---
-name: 'Atlanta Black Pride'
+event_name: 'Atlanta Black Pride'
+city_name: 'Atlanta'
 instagram: 'atlantablackpride'
 website: 'https://atlantablackpride.org/'
 image: '/images/atlanta.jpg'

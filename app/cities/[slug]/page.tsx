@@ -1,4 +1,4 @@
-import { getEventBySlug, getEvents } from '@/lib/events';
+import { getCities, getCityBySlug } from '@/lib/cities';
 import { notFound } from 'next/navigation';
 import React from 'react';
 import Image from 'next/image';
@@ -6,42 +6,39 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Instagram, Globe } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
+import { getEvents } from '@/lib/events';
+import Events from '@/components/events-grid';
 
 export async function generateStaticParams() {
-  const events = await getEvents();
-  const slugs = events.map((event) => ({ slug: event.slug }));
+  const cities = await getCities();
+  const slugs = cities.map((city) => ({ slug: city.slug }));
   return slugs;
 }
 
-export default async function EventPage({
+export default async function CityPage({
   params,
 }: {
   params: { slug: string };
 }) {
   const { slug } = params;
-  const event = await getEventBySlug(slug);
+  const city = await getCityBySlug(slug);
+  const events = await getEvents();
+  const filteredEvents = events.filter(
+    (event) =>
+      event.city?.toLowerCase() === city?.metadata.city_name?.toLowerCase()
+  );
 
-  if (!event) {
+  if (!city) {
     notFound();
   }
 
-  const { metadata, content } = event;
+  const { metadata, content } = city;
   const {
     event_name,
-    location_name,
-    street_address,
-    city,
-    state,
-    zip_code,
-    country,
-    date,
-    start_time,
-    end_time,
-    time_zone,
-    organizer,
+    city_name,
     image,
-    rsvp_required,
-    price,
+    organizers,
+    sponsors,
     instagram,
     website,
     description,
@@ -50,7 +47,7 @@ export default async function EventPage({
   return (
     <div>
       <div className='container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4'>
-        {/* Event Image */}
+        {/* City Image */}
         <div className='flex justify-center mb-8'>
           <div className='relative w-full max-h-[400px] overflow-hidden rounded-lg'>
             {image && (
@@ -65,30 +62,17 @@ export default async function EventPage({
           </div>
         </div>
 
-        {/* Event Details - Two Column Layout */}
-        <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
+        {/* City Details - Two Column Layout */}
+        <div className='grid grid-cols-1 lg:grid-cols-3 gap-8 pb-16'>
           {/* Left Column - 2/3 width */}
           <div className='lg:col-span-2'>
             <h1 className='text-3xl md:text-4xl font-bold mb-4'>
               {event_name}
             </h1>
 
-            <div className='flex items-center mb-4'>
-              <div className='font-medium'>{formatDate(date ?? '')}</div>
-              <div className='mx-2'>•</div>
-              <div className='font-mono text-muted-foreground'>
-                {start_time} - {end_time} {time_zone}
-              </div>
-            </div>
-
-            <div className='mb-1 font-semibold'>{location_name}</div>
-            <div className='mb-4 text-muted-foreground'>
-              {street_address}, {city}, {state} {zip_code}
-            </div>
-
             <div className='mb-4'>
-              <span className='font-medium'>Organizer: </span>
-              <span>{organizer}</span>
+              <span className='font-medium'>Organizer(s): </span>
+              <span>{organizers}</span>
             </div>
 
             <div className='text-muted-foreground'>{description}</div>
@@ -117,24 +101,21 @@ export default async function EventPage({
               </Button>
             </div>
 
-            <div className='border rounded-lg p-4'>
-              <div className='flex items-center mb-2'>
-                <span className='text-xl font-bold'>${price}</span>
-                <span className='ml-2 text-xs uppercase tracking-wider text-muted-foreground'>
-                  Ticket Price
+            <div className='mb-4'>
+              <span className='font-medium'>Sponsors: </span>
+              {sponsors?.map((sponsor, index) => (
+                <span key={index}>
+                  {sponsor}
+                  {index < sponsors.length - 1 ? ', ' : ''}
                 </span>
-              </div>
-
-              <div className='font-semibold mb-3'>
-                RSVP {rsvp_required ? '' : 'NOT'} REQUIRED
-              </div>
-
-              <p className='text-sm text-muted-foreground'>
-                Please check the website, as prices and availability are subject
-                to change.
-              </p>
+              ))}
             </div>
           </div>
+        </div>
+
+        {/* List of Events Section */}
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6'>
+          <Events events={filteredEvents} />
         </div>
       </div>
     </div>

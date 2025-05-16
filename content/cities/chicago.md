@@ -1,5 +1,6 @@
 ---
-name: 'Chicago Black Pride'
+event_name: 'Chicago Black Pride'
+city_name: "Chicago"
 instagram: 'chicagoblackpride'
 website: 'https://chicagoblackpride.com/'
 image: '/images/chicago.jpg'

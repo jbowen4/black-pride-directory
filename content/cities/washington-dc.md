@@ -1,5 +1,6 @@
 ---
-name: 'D.C. Pride'
+event_name: 'D.C. Pride'
+city_name: 'Washington'
 instagram: 'dcblackpride'
 website: 'https://dcblackpride.org/'
 image: '/images/washington_dc.png'

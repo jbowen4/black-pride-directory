@@ -1,5 +1,6 @@
 ---
-name: 'LA Black Pride'
+event_name: 'LA Black Pride'
+city_name: "LA"
 instagram: 'lablackpride'
 website: 'https://lablackpride.com/'
 image: '/images/los_angeles.jpg'

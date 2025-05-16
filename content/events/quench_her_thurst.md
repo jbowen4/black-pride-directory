@@ -17,4 +17,5 @@ price: 0
 instagram: 'thurstlounge'
 website: 'https://quenchherthurst.eventbrite.com'
 description: 'Join us at DC’s ONLY Black-owned LGBTQ+ Lounge 🏳️‍🌈 to kick off DC Black Pride & World Pride at the Quench HER Thurst—the ultimate R&B day party for HER! 🔥🍹🏳️‍🌈'
+categories: ['Sex', 'LGBTQ+']
 ---

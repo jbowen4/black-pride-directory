@@ -17,4 +17,5 @@ price: 0
 instagram: 'thegaydatingcoach'
 website: 'https://betterwaytomeet.com/events'
 description: ''
+categories: ['LGBTQ+', 'Education']
 ---

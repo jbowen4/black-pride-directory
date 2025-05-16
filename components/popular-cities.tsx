@@ -2,40 +2,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getCities } from '@/lib/cities';
 
-// Define the city data
-// const cities = [
-//   {
-//     name: 'New York',
-//     image: '/placeholder.svg?height=300&width=400',
-//     slug: 'new-york',
-//   },
-//   {
-//     name: 'Los Angeles',
-//     image: '/placeholder.svg?height=300&width=400',
-//     slug: 'los-angeles',
-//   },
-//   {
-//     name: 'Chicago',
-//     image: '/placeholder.svg?height=300&width=400',
-//     slug: 'chicago',
-//   },
-//   {
-//     name: 'Atlanta',
-//     image: '/placeholder.svg?height=300&width=400',
-//     slug: 'atlanta',
-//   },
-//   {
-//     name: 'Miami',
-//     image: '/placeholder.svg?height=300&width=400',
-//     slug: 'miami',
-//   },
-//   {
-//     name: 'San Francisco',
-//     image: '/placeholder.svg?height=300&width=400',
-//     slug: 'san-francisco',
-//   },
-// ];
-
 export async function PopularCities() {
   const cities = await getCities(6);
 
@@ -48,13 +14,13 @@ export async function PopularCities() {
           {cities.map((city) => (
             <Link
               key={city.slug}
-              href={`/events?city=${city.slug}`}
+              href={`/cities/${city.slug}`}
               className='group block'>
               <div className='relative h-64 rounded-xl overflow-hidden transition-transform duration-300 group-hover:scale-[1.02] group-hover:shadow-lg'>
                 {/* Background image */}
                 <Image
                   src={city.image || '/placeholder.svg'}
-                  alt={`${city.name} city`}
+                  alt={`${city.event_name} city`}
                   fill
                   className='object-cover'
                 />
@@ -64,11 +30,21 @@ export async function PopularCities() {
 
                 {/* City name */}
                 <div className='absolute inset-0 flex items-center justify-center'>
-                  <h3 className='text-2xl font-bold text-white'>{city.name}</h3>
+                  <h3 className='text-2xl font-bold text-white'>
+                    {city.event_name}
+                  </h3>
                 </div>
               </div>
             </Link>
           ))}
+        </div>
+
+        <div className='mt-8 text-center'>
+          <Link
+            href='/cities'
+            className='inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition duration-200'>
+            View All Cities
+          </Link>
         </div>
       </div>
     </section>
