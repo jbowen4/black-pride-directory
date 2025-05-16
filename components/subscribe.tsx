@@ -1,7 +1,6 @@
 'use client';
 
 import { z } from 'zod';
-import Link from 'next/link';
 import { toast } from 'sonner';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -12,7 +11,6 @@ type Inputs = z.infer<typeof NewsletterFormSchema>;
 
 import type React from 'react';
 
-import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
