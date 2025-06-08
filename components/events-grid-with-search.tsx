@@ -132,7 +132,7 @@ export default function EventsWithSearch({
                 <div className='flex items-center text-muted-foreground mt-auto'>
                   <CalendarIcon className='h-4 w-4 mr-1' />
                   <span className='text-sm'>
-                    {formatDate(event.date ?? '')}
+                    {formatDate(event.start_date ?? '')}
                   </span>
                 </div>
               </div>

@@ -57,7 +57,8 @@ export default async function EventPage({
     state,
     zip_code,
     //country,
-    date,
+    start_date,
+    end_date,
     start_time,
     end_time,
     time_zone,
@@ -97,7 +98,7 @@ export default async function EventPage({
             </h1>
 
             <div className='flex items-center mb-4'>
-              <div className='font-medium'>{formatDate(date ?? '')}</div>
+              <div className='font-medium'>{formatDate(start_date ?? '')}</div>
               <div className='mx-2'>•</div>
               <div className='font-mono text-muted-foreground'>
                 {start_time} - {end_time} {time_zone}

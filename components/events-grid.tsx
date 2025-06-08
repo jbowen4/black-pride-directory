@@ -38,7 +38,7 @@ export default function Events({ events }: { events: EventMetadata[] }) {
 
               <div className='flex items-center text-muted-foreground mt-auto'>
                 <CalendarIcon className='h-4 w-4 mr-1' />
-                <span className='text-sm'>{formatDate(event.date ?? '')}</span>
+                <span className='text-sm'>{formatDate(event.start_date ?? '')}</span>
               </div>
             </div>
           </div>

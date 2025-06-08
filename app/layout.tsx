@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Black Pride Network',
-    template: '%s | Black Pride Network',
+    default: 'Black Pride Directory',
+    template: '%s | Black Pride Directory',
   },
   description:
     'Your directory for Black LGBTQIA+ community events and resources.',

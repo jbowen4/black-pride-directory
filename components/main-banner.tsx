@@ -7,7 +7,7 @@ export function MainBanner() {
     <section className='py-16 md:py-24'>
       <div className='container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center'>
         <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6'>
-          Welcome to Black Pride Network
+          Welcome to Black Pride Directory
         </h1>
         <p className='text-xl text-muted-foreground mb-12 max-w-2xl mx-auto'>
           Your directory for community events and resources.

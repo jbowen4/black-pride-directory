@@ -17,7 +17,8 @@ export type EventMetadata = {
   state?: string;
   zip_code?: string;
   country?: string;
-  date?: string;
+  start_date?: string;
+  end_date?: string;
   start_time?: string;
   end_time?: string;
   time_zone?: string;
@@ -53,27 +54,27 @@ export async function getEvents(limit?: number): Promise<EventMetadata[]> {
       .filter((event) => {
         // Keep only events with dates on or after today
         const today = new Date();
-        const eventDate = new Date(event.date ?? '');
+        const eventDate = new Date(event.end_date ?? event.start_date ?? '');
         // Normalize both dates to ignore time part
         today.setHours(0, 0, 0, 0);
         eventDate.setHours(0, 0, 0, 0);
         return eventDate >= today;
       })
       .sort((a, b) => {
-        const dateA = new Date(a.date ?? '');
-        const dateB = new Date(b.date ?? '');
+        const dateA = new Date(a.start_date ?? '');
+        const dateB = new Date(b.start_date ?? '');
 
         if (dateA < dateB) return -1; // Earlier dates come first
         if (dateA > dateB) return 1; // Later dates come after
 
         // If dates are the same, compare start times
         const timeA =
-          a.date && a.start_time
-            ? new Date(`${a.date} ${a.start_time}`)
+          a.start_date && a.start_time
+            ? new Date(`${a.start_date} ${a.start_time}`)
             : new Date(8640000000000000);
         const timeB =
-          b.date && b.start_time
-            ? new Date(`${b.date} ${b.start_time}`)
+          b.start_date && b.start_time
+            ? new Date(`${b.start_date} ${b.start_time}`)
             : new Date(8640000000000000);
 
         return timeA.getTime() - timeB.getTime();

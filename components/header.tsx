@@ -13,7 +13,7 @@ export function Header() {
         {/* Left side - Site name */}
         <div className='flex items-center'>
           <Link href='/' className='text-xl font-bold'>
-            Black Pride Network
+            Black Pride Directory
           </Link>
         </div>
 

@@ -26,15 +26,16 @@ export default function AboutPage() {
           <div>
             <h2 className='text-2xl font-bold mb-4'>Our Mission</h2>
             <p className='text-muted-foreground'>
-              Black Pride Network is dedicated to connecting and empowering the
-              Black LGBTQ+ community through events, resources, and community
-              building. We believe in creating spaces where everyone can
-              celebrate their authentic selves while honoring the rich diversity
-              within our community. Our platform showcases events across the
-              country, making it easier for people to find and participate in
-              gatherings that affirm their identities and foster connection.
-              Through our work, we aim to strengthen bonds, increase visibility,
-              and promote the well-being of Black LGBTQ+ individuals everywhere.
+              Black Pride Directory is dedicated to connecting and empowering
+              the Black LGBTQ+ community through events, resources, and
+              community building. We believe in creating spaces where everyone
+              can celebrate their authentic selves while honoring the rich
+              diversity within our community. Our platform showcases events
+              across the country, making it easier for people to find and
+              participate in gatherings that affirm their identities and foster
+              connection. Through our work, we aim to strengthen bonds, increase
+              visibility, and promote the well-being of Black LGBTQ+ individuals
+              everywhere.
             </p>
           </div>
 
@@ -43,7 +44,7 @@ export default function AboutPage() {
             <div className='relative w-full max-w-md h-80 rounded-xl overflow-hidden'>
               <Image
                 src='/images/black_pride.jpg'
-                alt='Black Pride Network community'
+                alt='Black Pride Directory community'
                 fill
                 className='object-cover'
               />
@@ -89,7 +90,7 @@ export default function AboutPage() {
               Frequently Asked Questions
             </h2>
             <p className='text-muted-foreground'>
-              Find answers to common questions about Black Pride Network.
+              Find answers to common questions about Black Pride Directory.
             </p>
           </div>
 

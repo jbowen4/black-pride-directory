@@ -10,7 +10,7 @@ export function Footer() {
         <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
           {/* Left Column - Brand Info */}
           <div className='space-y-4'>
-            <h3 className='text-lg font-bold'>Black Pride Network</h3>
+            <h3 className='text-lg font-bold'>Black Pride Directory</h3>
             <p className='text-muted-foreground max-w-md'>
               Connecting the Black LGBTQ+ community through events
             </p>
@@ -113,7 +113,7 @@ export function Footer() {
       <div className='border-t'>
         <div className='container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4'>
           <p className='text-sm text-muted-foreground text-center'>
-            © {currentYear} Black Pride Network. All rights reserved.
+            © {currentYear} Black Pride Directory. All rights reserved.
           </p>
         </div>
       </div>

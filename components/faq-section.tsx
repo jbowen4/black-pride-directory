@@ -10,9 +10,9 @@ import {
 export function FaqSection() {
   const faqs = [
     {
-      question: 'What is Black Pride Network?',
+      question: 'What is Black Pride Directory?',
       answer:
-        'Black Pride Network is a platform dedicated to connecting the Black LGBTQ+ community through events, resources, and community building across the United States.',
+        'Black Pride Directory is a platform dedicated to connecting the Black LGBTQ+ community through events, resources, and community building across the United States.',
     },
     {
       question: 'How can I add my event to the platform?',
@@ -20,12 +20,12 @@ export function FaqSection() {
         'Event organizers can submit their events through our submission form. After a brief review process to ensure it aligns with our community guidelines, your event will be listed on our platform.',
     },
     {
-      question: 'Is Black Pride Network only for certain cities?',
+      question: 'Is Black Pride Directory only for certain cities?',
       answer:
         "While we currently feature events in 10 major cities, we're constantly expanding our reach. Our goal is to include events from communities of all sizes across the country.",
     },
     {
-      question: 'How can I get involved with Black Pride Network?',
+      question: 'How can I get involved with Black Pride Directory?',
       answer:
         'There are many ways to get involved! You can volunteer, become a community ambassador, partner with us as an organization, or simply spread the word about our platform.',
     },
