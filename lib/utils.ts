@@ -86,7 +86,8 @@ export const convertTo24Hour = (timeStr: string): string => {
 
   if (/[AP]M/i.test(time)) {
     const [rawTime, modifier] = time.split(' ');
-    let [hours, minutes] = rawTime.split(':').map(Number);
+    const [rawHours, minutes] = rawTime.split(':').map(Number);
+    let hours = rawHours;
     if (modifier.toLowerCase() === 'pm' && hours !== 12) hours += 12;
     if (modifier.toLowerCase() === 'am' && hours === 12) hours = 0;
     return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:00`;

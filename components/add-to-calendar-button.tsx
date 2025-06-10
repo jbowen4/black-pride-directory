@@ -28,12 +28,32 @@ export default function AddToCalendarButton({ event }: { event: Event }) {
   const generateICS = () => {
     const icsContent = `BEGIN:VCALENDAR
     VERSION:2.0
+    CALSCALE:GREGORIAN
+    METHOD:PUBLISH
+    BEGIN:VTIMEZONE
+    TZID:${time_zone}
+    X-LIC-LOCATION:${time_zone}
+    BEGIN:DAYLIGHT
+    TZOFFSETFROM:-0500
+    TZOFFSETTO:-0400
+    TZNAME:EDT
+    DTSTART:19700308T020000
+    RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU
+    END:DAYLIGHT
+    BEGIN:STANDARD
+    TZOFFSETFROM:-0400
+    TZOFFSETTO:-0500
+    TZNAME:EST
+    DTSTART:19701101T020000
+    RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
+    END:STANDARD
+    END:VTIMEZONE
     BEGIN:VEVENT
     SUMMARY:${event_name}
     DESCRIPTION:${description}
     LOCATION:${formatLocation(location_name, street_address, city, state, zip_code, country)}
-    DTSTART:${formatDatetime(start_date, start_time)}
-    DTEND:${formatDatetime(end_date, end_time)}
+    DTSTART;TZID=${time_zone}:${formatDatetime(start_date, start_time)}
+    DTEND;TZID=${time_zone}:${formatDatetime(end_date, end_time)}
     END:VEVENT
     END:VCALENDAR`;
 
