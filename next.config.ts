@@ -24,6 +24,14 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'scontent-mia3-1.xx.fbcdn.net',
       },
+      {
+        protocol: 'https',
+        hostname: 'dice-media.imgix.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'posh.vip',
+      },
     ],
   },
 };

@@ -30,6 +30,7 @@ export type EventMetadata = {
   website?: string;
   description?: string;
   categories?: string[];
+  city_category?: string; // New field for city category
   slug: string;
 };
 

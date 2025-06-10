@@ -47,7 +47,9 @@ export default async function CityPage({
   const events = await getEvents();
   const filteredEvents = events.filter(
     (event) =>
-      event.city?.toLowerCase() === city?.metadata.city_name?.toLowerCase()
+      event.city?.toLowerCase() === city?.metadata.city_name?.toLowerCase() ||
+      event.city_category?.toLowerCase() ===
+        city?.metadata.city_name?.toLowerCase()
   );
 
   if (!city) {

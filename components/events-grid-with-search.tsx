@@ -35,7 +35,10 @@ export default function EventsWithSearch({
             .map((c: string) => c.toLowerCase())
             .includes(category.toLowerCase())
         : true) &&
-      (city ? event.city?.toLowerCase() === city.toLowerCase() : true)
+      (city
+        ? event.city?.toLowerCase() === city.toLowerCase() ||
+          event.city_category?.toLowerCase() === city.toLowerCase()
+        : true)
     );
   });
 

@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Instagram, Globe } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
 import { Metadata } from 'next';
+import ShareAndAddToCalendar from '@/components/share-and-calendar';
 
 export async function generateStaticParams() {
   const events = await getEvents();
@@ -158,6 +159,8 @@ export default async function EventPage({
                 to change. Only starting prices are listed.
               </p>
             </div>
+
+            <ShareAndAddToCalendar event={event} />
           </div>
         </div>
       </div>

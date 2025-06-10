@@ -1,6 +1,6 @@
 ---
 event_name: 'NYC Black Pride'
-city_name: 'NYC'
+city_name: 'New York'
 instagram: 'nycblackpride'
 website: 'https://nycblackpride.com/'
 image: '/images/new_york.jpeg'
