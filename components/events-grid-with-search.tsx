@@ -18,6 +18,8 @@ import {
 } from '@/components/ui/select';
 import { useState } from 'react';
 import TogglePill, { ToggleOption } from './toggle-pill';
+import Calendar31 from './calendar-31';
+import EventsMap from './events-map';
 
 export default function EventsWithSearch({
   events,
@@ -152,7 +154,9 @@ export default function EventsWithSearch({
         </div>
       )}
 
-      {eventView === 'calendar' && <></>}
+      {eventView === 'calendar' && <Calendar31 events={filteredEvents} />}
+
+      {eventView === 'map' && <EventsMap events={filteredEvents} />}
     </>
   );
 }
