@@ -21,7 +21,7 @@ export default function TogglePill({
   return (
     <div className='flex justify-center'>
       <div className='relative flex items-center bg-white border border-input rounded-full p-1 shadow-sm'>
-        {options.map((option, index) => (
+        {options.map((option) => (
           <button
             key={option.value}
             onClick={() => onChange(option.value)}

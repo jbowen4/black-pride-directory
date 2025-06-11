@@ -76,7 +76,7 @@ export default function EventsMap({ events }: { events: EventMetadata[] }) {
         }
       });
     });
-  }, []);
+  }, [events]);
 
   return <div ref={mapRef} className='w-full h-[400px] rounded shadow' />;
 }
