@@ -7,6 +7,7 @@ import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { EventMetadata } from '@/lib/events';
 import { formatDate } from '@/lib/utils';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Calendar31({ events }: { events: EventMetadata[] }) {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
@@ -110,14 +111,23 @@ export default function Calendar31({ events }: { events: EventMetadata[] }) {
                         {', '} {event.start_time} - {event.end_time}{' '}
                         {event.time_zone}
                       </div>
-                      {event.image && (
-                        <img
-                          src={event.image}
-                          alt={event.event_name}
-                          className='absolute right-0 top-0 h-full object-cover rounded-r-md shadow'
-                          style={{ width: '200px' }}
-                        />
-                      )}
+                      {
+                        <div className='absolute right-0 top-0 h-full w-[200px] rounded-r-md overflow-hidden shadow'>
+                          <Image
+                            src={
+                              event.image ||
+                              (event.city_category
+                                ? `/images/${event.city_category.toLowerCase().replace(/\s+/g, '-')}.jpg`
+                                : event.city
+                                  ? `/images/${event.city.toLowerCase().replace(/\s+/g, '-')}.jpg`
+                                  : '/images/black-gay-pride.png')
+                            }
+                            alt={event.event_name ?? 'Event Flyer Image'}
+                            fill
+                            className='object-cover'
+                          />
+                        </div>
+                      }
                     </div>
                   </Link>
                 ))

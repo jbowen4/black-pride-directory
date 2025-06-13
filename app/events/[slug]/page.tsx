@@ -79,6 +79,7 @@ export default async function EventPage({
     location_name,
     street_address,
     city,
+    city_category,
     state,
     zip_code,
     //country,
@@ -96,15 +97,20 @@ export default async function EventPage({
     description,
   } = metadata;
 
+  const citySlug = (city_category || city)?.toLowerCase().replace(/\s+/g, '-');
+  const cityData = citySlug ? await getCityBySlug(citySlug) : null;
+  const imageUrl =
+    image || cityData?.metadata.image || '/images/black-gay-pride.jpg';
+
   return (
     <div>
       <div className='container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4'>
         {/* Event Image */}
         <div className='flex justify-center mb-8'>
           <div className='relative w-full max-h-[400px] overflow-hidden rounded-lg'>
-            {image && (
+            {imageUrl && (
               <Image
-                src={image || '/placeholder.svg'}
+                src={imageUrl}
                 alt={event_name || 'Placeholder Image'}
                 width={1200}
                 height={400}

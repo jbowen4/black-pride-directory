@@ -126,8 +126,11 @@ export default function EventsWithSearch({
                   <Image
                     src={
                       event.image ||
-                      `/images/${event.city?.toLowerCase().replace(/\s+/g, '-')}.jpg` ||
-                      '/images/black-gay-pride.png'
+                      (event.city_category
+                        ? `/images/${event.city_category.toLowerCase().replace(/\s+/g, '-')}.jpg`
+                        : event.city
+                          ? `/images/${event.city.toLowerCase().replace(/\s+/g, '-')}.jpg`
+                          : '/images/black-gay-pride.png')
                     }
                     alt={event.event_name ?? ''}
                     fill
