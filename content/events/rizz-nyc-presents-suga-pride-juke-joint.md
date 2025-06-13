@@ -10,7 +10,7 @@ country: 'US'
 start_date: '6/26/2025'
 start_time: '8:00 PM'
 end_time: '1:00 AM'
-time_zone: 'EST'
+time_zone: 'America/New_York'
 organizer: 'Ashantiology'
 image: ''
 rsvp_required: True

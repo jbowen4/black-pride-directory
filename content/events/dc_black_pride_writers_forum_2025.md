@@ -10,7 +10,7 @@ country: 'US'
 start_date: '5/24/2025'
 start_time: '1:00 PM'
 end_time: '2:30 PM'
-time_zone: 'EDT'
+time_zone: 'America/New_York'
 organizer: 'DC Black Pride'
 image: 'https://dcblackpride.org/wp-content/uploads/2025/04/Writer1.jpg'
 rsvp_required: False

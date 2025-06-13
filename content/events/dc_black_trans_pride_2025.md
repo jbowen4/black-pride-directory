@@ -10,7 +10,7 @@ country: 'US'
 start_date: '5/24/2025'
 start_time: ''
 end_time: ''
-time_zone: 'EDT'
+time_zone: 'America/New_York'
 organizer: 'BX-DC-ATL LGBTQ Centers'
 image: 'https://dcblackpride.org/wp-content/uploads/2025/04/Flyer-DCBPBlackTransPride-1.jpeg'
 rsvp_required: False

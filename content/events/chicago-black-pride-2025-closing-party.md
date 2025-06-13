@@ -9,7 +9,7 @@ country: 'US'
 start_date: '7/6/2025'
 start_time: '9:00 PM'
 end_time: '2:00 AM'
-time_zone: 'CDT'
+time_zone: 'America/Chicago'
 organizer: 'Rails Marketing Group'
 image: '/images/progress-bar-closing.jpg'
 rsvp_required: False

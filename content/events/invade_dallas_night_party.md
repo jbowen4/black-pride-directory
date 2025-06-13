@@ -9,7 +9,7 @@ country: 'US'
 start_date: '6/20/2025'
 start_time: '10:00 PM'
 end_time: '3:00 AM'
-time_zone: 'CDT'
+time_zone: 'America/Chicago'
 organizer: 'Dallas Southern Pride'
 image: 'https://dallassouthernpride.com/wp-content/uploads/2025/05/Invade-Dallas.png'
 rsvp_required: False

@@ -9,7 +9,7 @@ country: 'US'
 start_date: '7/6/2025'
 start_time: '4:00 PM'
 end_time: '9:00 PM'
-time_zone: 'CDT'
+time_zone: 'America/Chicago'
 organizer: 'Chicago Black Pride'
 image: '/images/freedom-day-party.jpg'
 rsvp_required: False

@@ -9,7 +9,7 @@ country: 'US'
 start_date: '8/28/2024'
 start_time: '8:00 PM'
 end_time: '12:00 AM'
-time_zone: 'EDT'
+time_zone: 'America/New_York'
 organizer: 'Lamont White (The Dating Coach)'
 image: ''
 rsvp_required: False

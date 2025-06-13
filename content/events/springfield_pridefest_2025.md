@@ -10,7 +10,7 @@ country: 'US'
 start_date: '5/17/2025'
 start_time: '11:30 AM'
 end_time: ''
-time_zone: 'CDT'
+time_zone: 'America/Chicago'
 organizer: 'Phoenix Center'
 image: ''
 rsvp_required: False

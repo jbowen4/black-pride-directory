@@ -5,7 +5,7 @@ import * as React from 'react';
 import { Calendar, CalendarDayButton } from '@/components/ui/calendar';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { EventMetadata } from '@/lib/events';
-import { formatDate } from '@/lib/utils';
+import { formatDate, formatTimezone } from '@/lib/utils';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -95,13 +95,17 @@ export default function Calendar31({ events }: { events: EventMetadata[] }) {
                     <div
                       key={event.event_name}
                       className='bg-muted after:bg-primary/70 relative rounded-md p-2 pl-6 text-sm after:absolute after:inset-y-2 after:left-2 after:w-1 after:rounded-full hover:cursor-pointer'>
-                      <div className='font-bold text-base'>
+                      <div
+                        className='font-bold text-base break-words'
+                        style={{ width: 'calc(100% - 50px)' }}>
                         {event.event_name}
                       </div>
                       <div className='font-medium'>
                         {event.city}, {event.state}
                       </div>
-                      <div className='text-muted-foreground text-xs'>
+                      <div
+                        className='text-muted-foreground text-xs break-words'
+                        style={{ width: 'calc(100% - 50px)' }}>
                         {formatDate(event.start_date ?? '')}
                         {event.end_date &&
                           event.end_date !== '' &&
@@ -109,10 +113,10 @@ export default function Calendar31({ events }: { events: EventMetadata[] }) {
                             <> - {formatDate(event.end_date)}</>
                           )}
                         {', '} {event.start_time} - {event.end_time}{' '}
-                        {event.time_zone}
+                        {formatTimezone(event.time_zone)}
                       </div>
                       {
-                        <div className='absolute right-0 top-0 h-full w-[200px] rounded-r-md overflow-hidden shadow'>
+                        <div className='absolute right-0 top-0 h-full w-[50px] md:w-[100px] lg:w-[200px] rounded-r-md overflow-hidden shadow'>
                           <Image
                             src={
                               event.image ||

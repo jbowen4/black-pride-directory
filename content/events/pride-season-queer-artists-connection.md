@@ -10,7 +10,7 @@ country: 'USA'
 start_date: '6/20/2025'
 start_time: '7:00 PM'
 end_time: '11:00 PM'
-time_zone: 'EDT'
+time_zone: 'America/New_York'
 organizer: 'ONEKAGI ARTVERSE'
 image: ''
 rsvp_required: False

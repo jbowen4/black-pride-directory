@@ -9,7 +9,7 @@ country: 'US'
 start_date: '7/5/2025'
 start_time: '2:00 PM'
 end_time: '7:00 PM'
-time_zone: 'CDT'
+time_zone: 'America/Chicago'
 organizer: 'Rails Marketing Group'
 image: ''
 rsvp_required: False

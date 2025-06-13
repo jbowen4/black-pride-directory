@@ -10,7 +10,7 @@ country: 'US'
 start_date: '5/22/2025'
 start_time: '7:00 PM'
 end_time: '2:00 AM'
-time_zone: 'EDT'
+time_zone: 'America/New_York'
 organizer: 'Deviant Events'
 image: '/images/deviant_game_night.jpeg'
 rsvp_required: False

@@ -10,7 +10,7 @@ country: 'US'
 start_date: '5/23/2025'
 start_time: '4:00 PM'
 end_time: '7:00 PM'
-time_zone: 'EDT'
+time_zone: 'America/New_York'
 organizer: 'Lamont White (The Dating Coach), Tyrice Johnson'
 image: 'https://dcblackpride.org/wp-content/uploads/2025/05/image0-1.png'
 rsvp_required: True

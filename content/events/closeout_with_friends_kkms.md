@@ -9,7 +9,7 @@ country: 'US'
 start_date: '6/22/2025'
 start_time: '4:00 PM'
 end_time: '8:00 PM'
-time_zone: 'CDT'
+time_zone: 'America/Chicago'
 organizer: 'KKMS Dallas'
 image: ''
 rsvp_required: False

@@ -9,6 +9,7 @@ import { formatDate } from '@/lib/utils';
 import { Metadata } from 'next';
 import ShareAndAddToCalendar from '@/components/share-and-calendar';
 import { getCityBySlug } from '@/lib/cities';
+import { formatTimezone } from '@/lib/utils';
 
 export async function generateStaticParams() {
   const events = await getEvents();
@@ -137,7 +138,7 @@ export default async function EventPage({
               </div>
               <div className='mx-2'>•</div>
               <div className='font-mono text-muted-foreground'>
-                {start_time} - {end_time} {time_zone}
+                {start_time} - {end_time} {formatTimezone(time_zone)}
               </div>
             </div>
 

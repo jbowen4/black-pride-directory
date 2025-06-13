@@ -9,7 +9,7 @@ country: 'US'
 start_date: '6/20/2025'
 start_time: '10:00 AM'
 end_time: '5:00 PM'
-time_zone: 'CDT'
+time_zone: 'America/Chicago'
 organizer: 'Abounding Prosperity, Inc.'
 image: 'https://dallassouthernpride.com/wp-content/uploads/2025/05/Juneteenth-Health-Summit-scaled.png'
 rsvp_required: False

@@ -10,7 +10,7 @@ country: 'US'
 start_date: '5/24/2025'
 start_time: '10:00 PM'
 end_time: '3:00 AM'
-time_zone: 'EDT'
+time_zone: 'America/New_York'
 organizer: 'Deviant Events'
 image: '/images/dc_blow.jpeg'
 rsvp_required: True

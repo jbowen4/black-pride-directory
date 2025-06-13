@@ -9,7 +9,7 @@ country: 'US'
 start_date: '7/5/2025'
 start_time: '11:00 AM'
 end_time: '9:00 PM'
-time_zone: 'CDT'
+time_zone: 'America/Chicago'
 organizer: 'Pride South Side'
 image: 'https://pridechicago.org/wp-content/uploads/2024/12/Event-Pride-South-Side-2025.jpg'
 rsvp_required: False

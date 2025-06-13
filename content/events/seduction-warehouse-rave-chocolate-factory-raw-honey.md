@@ -10,7 +10,7 @@ country: 'US'
 start_date: '6/27/2025'
 start_time: '10:30 PM'
 end_time: '4:00 AM'
-time_zone: 'EST'
+time_zone: 'America/New_York'
 organizer: 'Raw Honey'
 image: 'https://posh.vip/cdn-cgi/image/quality=85,fit=scale-down,format=webp,width=1920/https://posh-images-alts-production.s3.amazonaws.com/68461aa56f3363559c474d8b/1400x1400.webp'
 rsvp_required: True

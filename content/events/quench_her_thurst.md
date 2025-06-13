@@ -10,7 +10,7 @@ country: 'US'
 start_date: '5/21/2025'
 start_time: '5:00 PM'
 end_time: '12:00 AM'
-time_zone: 'EDT'
+time_zone: 'America/New_York'
 organizer: 'Party With Honey'
 image: '/images/quench_her_thurst.avif'
 rsvp_required: False

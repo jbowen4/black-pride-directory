@@ -10,7 +10,7 @@ country: 'US'
 start_date: '6/29/2025'
 start_time: '7:00 PM'
 end_time: '2:00 AM'
-time_zone: 'EST'
+time_zone: 'America/New_York'
 organizer: 'Raw Honey / ZESTYWORLD'
 image: 'https://dice-media.imgix.net/attachments/2025-06-06/f188d483-62cc-4199-9a6d-a6c48d9b6620.jpg?rect=0%2C0%2C1080%2C1080&auto=format%2Ccompress&q=40&w=328&h=328&fit=crop&crop=faces%2Ccenter&dpr=2'
 rsvp_required: True

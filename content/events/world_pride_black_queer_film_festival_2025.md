@@ -10,7 +10,7 @@ country: 'US'
 start_date: '5/27/2025'
 start_time: '6:00 PM'
 end_time: '9:00 PM'
-time_zone: 'EDT'
+time_zone: 'America/New_York'
 organizer: 'World Pride Celebration'
 image: 'https://dcblackpride.org/wp-content/uploads/2025/04/film1.jpg'
 rsvp_required: False

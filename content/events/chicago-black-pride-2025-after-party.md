@@ -9,7 +9,7 @@ country: 'US'
 start_date: '7/6/2025'
 start_time: '11:00 PM'
 end_time: '4:00 AM'
-time_zone: 'CDT'
+time_zone: 'America/Chicago'
 organizer: 'Rails Marketing Group'
 image: '/images/jeffery-pub-after.jpg'
 rsvp_required: False

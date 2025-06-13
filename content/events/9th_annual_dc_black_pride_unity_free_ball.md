@@ -10,7 +10,7 @@ country: 'US'
 start_date: '5/22/2025'
 start_time: '9:00 PM'
 end_time: '1:00 AM'
-time_zone: 'EDT'
+time_zone: 'America/New_York'
 organizer: 'Capitol Ballroom Council'
 image: 'https://dcblackpride.org/wp-content/uploads/2025/03/Unity2.jpg'
 rsvp_required: False

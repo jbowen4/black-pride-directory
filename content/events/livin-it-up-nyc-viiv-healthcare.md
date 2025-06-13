@@ -9,7 +9,7 @@ country: 'US'
 start_date: '6/15/2025'
 start_time: '5:00 PM'
 end_time: '9:00 PM'
-time_zone: 'EST'
+time_zone: 'America/New_York'
 organizer: ''
 image: ''
 rsvp_required: True

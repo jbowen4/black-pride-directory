@@ -9,7 +9,7 @@ country: 'US'
 start_date: '6/21/2025'
 start_time: '10:00 AM'
 end_time: '2:00 PM'
-time_zone: 'EST'
+time_zone: 'America/New_York'
 organizer: 'TRAND1 Streetball x Raw Honey'
 image: ''
 rsvp_required: True

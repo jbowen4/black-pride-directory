@@ -10,7 +10,7 @@ country: 'US'
 start_date: '6/27/2025'
 start_time: '10:00 PM'
 end_time: '4:00 AM'
-time_zone: 'EST'
+time_zone: 'America/New_York'
 organizer: 'ZESTYWORLD'
 image: ''
 rsvp_required: False

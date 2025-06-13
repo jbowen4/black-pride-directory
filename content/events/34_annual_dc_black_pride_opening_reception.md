@@ -10,7 +10,7 @@ country: 'US'
 start_date: '5/23/2025'
 start_time: '5:00 PM'
 end_time: '10:00 PM'
-time_zone: 'EDT'
+time_zone: 'America/New_York'
 organizer: ''
 image: 'https://dcblackpride.org/wp-content/uploads/2025/04/Iniko2-1.jpg'
 rsvp_required: True

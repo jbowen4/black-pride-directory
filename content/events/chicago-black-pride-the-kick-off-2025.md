@@ -9,7 +9,7 @@ country: 'US'
 start_date: '7/3/2025'
 start_time: '10:00 PM'
 end_time: '2:00 AM'
-time_zone: 'CDT'
+time_zone: 'America/Chicago'
 organizer: 'Chicago Black Pride'
 image: '/images/the-kick-off.jpg'
 rsvp_required: False

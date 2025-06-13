@@ -171,3 +171,23 @@ export function formatLocation(
     ? `${location_name.trim()}, ${address}`
     : address;
 }
+
+export function formatTimezone(timezoneString?: string): string {
+  if (!timezoneString) return '';
+  try {
+    // Try to format using Intl API for better display
+    const dtf = new Intl.DateTimeFormat('en-US', {
+      timeZone: timezoneString,
+      timeZoneName: 'short',
+    });
+    const parts = dtf.formatToParts(new Date());
+    const tzPart = parts.find((p) => p.type === 'timeZoneName');
+    if (tzPart && tzPart.value) {
+      return tzPart.value;
+    }
+  } catch {
+    // Fallback to raw string
+    return '';
+  }
+  return '';
+}
