@@ -2,7 +2,17 @@ import { getEvents } from '@/lib/events';
 import Events from './events-grid';
 
 export async function UpcomingEvents() {
-  const events = await getEvents(4);
+  const events = (await getEvents())
+    .filter((event) => {
+      // Keep only events with dates on or after today
+      const today = new Date();
+      const eventDate = new Date(event.end_date ?? event.start_date ?? '');
+      // Normalize both dates to ignore time part
+      today.setHours(0, 0, 0, 0);
+      eventDate.setHours(0, 0, 0, 0);
+      return eventDate >= today;
+    })
+    .slice(0, 4);
 
   return (
     <section className='py-16'>

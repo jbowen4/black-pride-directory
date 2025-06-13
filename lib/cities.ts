@@ -18,6 +18,7 @@ export type CityMetadata = {
   organizers?: string;
   sponsors?: string[];
   description?: string;
+  popular_city?: boolean;
   slug: string;
 };
 
@@ -36,14 +37,20 @@ export async function getCityBySlug(slug: string): Promise<City | null> {
 export async function getCities(limit?: number): Promise<CityMetadata[]> {
   try {
     const files = fs.readdirSync(rootDirectory);
-    const events = files
+    const cities = files
       .filter((file) => file.endsWith('.md'))
-      .map((file) => getPostMetadata(file));
+      .map((file) => getPostMetadata(file))
+      .sort((a, b) => {
+        // Sort by popular_city: true first, then false or undefined
+        if (a.popular_city === b.popular_city) return 0;
+        if (a.popular_city) return -1;
+        return 1;
+      });
 
     if (limit) {
-      return events.slice(0, limit);
+      return cities.slice(0, limit);
     }
-    return events;
+    return cities;
   } catch (error) {
     console.error('Error reading files:', error);
     return [];

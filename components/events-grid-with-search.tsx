@@ -42,6 +42,10 @@ export default function EventsWithSearch({
       (city
         ? event.city?.toLowerCase() === city.toLowerCase() ||
           event.city_category?.toLowerCase() === city.toLowerCase()
+        : true) &&
+      (eventView === 'list' || eventView === 'map'
+        ? new Date(event.end_date ?? event.start_date ?? '') >=
+          new Date(new Date().toDateString())
         : true)
     );
   });
@@ -120,11 +124,14 @@ export default function EventsWithSearch({
                 {/* Event image */}
                 <div className='relative h-48 w-full'>
                   <Image
-                    src={event.image || '/placeholder.svg'}
+                    src={
+                      event.image ||
+                      `/images/${event.city?.toLowerCase().replace(/\s+/g, '-')}.jpg` ||
+                      '/images/black-gay-pride.png'
+                    }
                     alt={event.event_name ?? ''}
                     fill
                     className='object-cover'
-                    //onError={() => setImgSrc('/placeholder.svg')}
                   />
                 </div>
 

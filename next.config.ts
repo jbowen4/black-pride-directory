@@ -32,6 +32,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'posh.vip',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.squarespace-cdn.com',
+      },
     ],
   },
 };

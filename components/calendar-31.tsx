@@ -94,7 +94,12 @@ export default function Calendar31({ events }: { events: EventMetadata[] }) {
                     <div
                       key={event.event_name}
                       className='bg-muted after:bg-primary/70 relative rounded-md p-2 pl-6 text-sm after:absolute after:inset-y-2 after:left-2 after:w-1 after:rounded-full hover:cursor-pointer'>
-                      <div className='font-medium'>{event.event_name}</div>
+                      <div className='font-bold text-base'>
+                        {event.event_name}
+                      </div>
+                      <div className='font-medium'>
+                        {event.city}, {event.state}
+                      </div>
                       <div className='text-muted-foreground text-xs'>
                         {formatDate(event.start_date ?? '')}
                         {event.end_date &&
@@ -105,6 +110,14 @@ export default function Calendar31({ events }: { events: EventMetadata[] }) {
                         {', '} {event.start_time} - {event.end_time}{' '}
                         {event.time_zone}
                       </div>
+                      {event.image && (
+                        <img
+                          src={event.image}
+                          alt={event.event_name}
+                          className='absolute right-0 top-0 h-full object-cover rounded-r-md shadow'
+                          style={{ width: '200px' }}
+                        />
+                      )}
                     </div>
                   </Link>
                 ))

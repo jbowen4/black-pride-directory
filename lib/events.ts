@@ -52,15 +52,15 @@ export async function getEvents(limit?: number): Promise<EventMetadata[]> {
     const events = files
       .filter((file) => file.endsWith('.md'))
       .map((file) => getPostMetadata(file))
-      .filter((event) => {
-        // Keep only events with dates on or after today
-        const today = new Date();
-        const eventDate = new Date(event.end_date ?? event.start_date ?? '');
-        // Normalize both dates to ignore time part
-        today.setHours(0, 0, 0, 0);
-        eventDate.setHours(0, 0, 0, 0);
-        return eventDate >= today;
-      })
+      // .filter((event) => {
+      //   // Keep only events with dates on or after today
+      //   const today = new Date();
+      //   const eventDate = new Date(event.end_date ?? event.start_date ?? '');
+      //   // Normalize both dates to ignore time part
+      //   today.setHours(0, 0, 0, 0);
+      //   eventDate.setHours(0, 0, 0, 0);
+      //   return eventDate >= today;
+      // })
       .sort((a, b) => {
         const dateA = new Date(a.start_date ?? '');
         const dateB = new Date(b.start_date ?? '');

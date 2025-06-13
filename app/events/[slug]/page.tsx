@@ -8,6 +8,7 @@ import { Instagram, Globe } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
 import { Metadata } from 'next';
 import ShareAndAddToCalendar from '@/components/share-and-calendar';
+import { getCityBySlug } from '@/lib/cities';
 
 export async function generateStaticParams() {
   const events = await getEvents();
@@ -22,17 +23,40 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const event = await getEventBySlug(slug);
+  const citySlug = (event?.metadata.city_category || event?.metadata.city)
+    ?.toLowerCase()
+    .replace(/\s+/g, '-');
+  const city = citySlug ? await getCityBySlug(citySlug) : null;
+
+  const title = event?.metadata.event_name || 'Black LGBTQ+ Event Details';
+  const description = event?.metadata.description || 'Check out this event!';
+  const imageUrl =
+    event?.metadata.image ||
+    city?.metadata.image ||
+    '/images/black-gay-pride.jpg';
 
   return {
-    title: event?.metadata.event_name || 'Event Details',
-    description: event?.metadata.description,
+    title,
+    description,
     openGraph: {
+      title,
+      description,
+      type: 'website',
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/events/${slug}`,
       images: [
         {
-          url: event?.metadata.image || '/placeholder.svg',
-          alt: event?.metadata.event_name || 'Event Image',
+          url: imageUrl,
+          alt: title,
+          width: 1200,
+          height: 630,
         },
       ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [imageUrl],
     },
   };
 }
@@ -113,7 +137,8 @@ export default async function EventPage({
 
             <div className='mb-1 font-semibold'>{location_name}</div>
             <div className='mb-4 text-muted-foreground'>
-              {street_address}, {city}, {state} {zip_code}
+              {street_address} {street_address ? ',' : ''} {city}, {state}{' '}
+              {zip_code}
             </div>
 
             <div className='mb-4'>

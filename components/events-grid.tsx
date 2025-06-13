@@ -16,7 +16,11 @@ export default function Events({ events }: { events: EventMetadata[] }) {
             {/* Event image */}
             <div className='relative h-48 w-full'>
               <Image
-                src={event.image || '/placeholder.svg'}
+                src={
+                  event.image ||
+                  `/images/${event.city?.toLowerCase().replace(/\s+/g, '-')}.jpg` ||
+                  '/images/black-gay-pride.png'
+                }
                 alt={event.event_name ?? ''}
                 fill
                 className='object-cover'
@@ -38,7 +42,9 @@ export default function Events({ events }: { events: EventMetadata[] }) {
 
               <div className='flex items-center text-muted-foreground mt-auto'>
                 <CalendarIcon className='h-4 w-4 mr-1' />
-                <span className='text-sm'>{formatDate(event.start_date ?? '')}</span>
+                <span className='text-sm'>
+                  {formatDate(event.start_date ?? '')}
+                </span>
               </div>
             </div>
           </div>

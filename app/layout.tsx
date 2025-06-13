@@ -5,6 +5,7 @@ import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Toaster } from '@/components/ui/sonner';
 import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -41,6 +42,7 @@ export default function RootLayout({
         <main className='flex-1 pt-10 pb-8'>{children}</main>
         <Toaster />
         <Analytics />
+        <SpeedInsights />
         <Footer />
       </body>
     </html>

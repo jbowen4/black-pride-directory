@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Button } from './ui/button';
 import { Calendar } from 'lucide-react';
 import { Event } from '@/lib/events';
-import { formatDatetime, formatLocation } from '@/lib/utils';
+import { formatDatetimeRange, formatLocation } from '@/lib/utils';
 
 export default function AddToCalendarButton({ event }: { event: Event }) {
   const [showModal, setShowModal] = useState(false);
@@ -18,12 +18,28 @@ export default function AddToCalendarButton({ event }: { event: Event }) {
     zip_code = '',
     country = '',
     start_date = '2025-06-15',
-    end_date = start_date || '2025-06-15',
+    end_date = '',
     description = 'No description provided',
     start_time = '09:00',
     end_time = '10:00',
     time_zone = 'America/New_York',
   } = event.metadata || {};
+
+  const { start, end } = formatDatetimeRange(
+    start_date,
+    start_time,
+    end_date,
+    end_time
+  );
+
+  const location = formatLocation(
+    location_name,
+    street_address,
+    city,
+    state,
+    zip_code,
+    country
+  );
 
   const generateICS = () => {
     const icsContent = `BEGIN:VCALENDAR
@@ -51,9 +67,9 @@ export default function AddToCalendarButton({ event }: { event: Event }) {
     BEGIN:VEVENT
     SUMMARY:${event_name}
     DESCRIPTION:${description}
-    LOCATION:${formatLocation(location_name, street_address, city, state, zip_code, country)}
-    DTSTART;TZID=${time_zone}:${formatDatetime(start_date, start_time)}
-    DTEND;TZID=${time_zone}:${formatDatetime(end_date, end_time)}
+    LOCATION:${location}
+    DTSTART;TZID=${time_zone}:${start}
+    DTEND;TZID=${time_zone}:${end}
     END:VEVENT
     END:VCALENDAR`;
 
@@ -70,14 +86,14 @@ export default function AddToCalendarButton({ event }: { event: Event }) {
   };
 
   const openGoogleCalendar = () => {
-    const startStr = formatDatetime(start_date, start_time);
-    const endStr = formatDatetime(end_date, end_time);
+    //const startStr = formatDatetime(start_date, start_time);
+    //const endStr = formatDatetime(end_date, end_time);
 
     const url = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
       event_name
-    )}&dates=${startStr}/${endStr}&details=${encodeURIComponent(
+    )}&dates=${start}/${end}&details=${encodeURIComponent(
       description
-    )}&location=${encodeURIComponent(formatLocation(location_name, street_address, city, state, zip_code, country))}`;
+    )}&location=${encodeURIComponent(location)}`;
 
     window.open(url, '_blank');
   };

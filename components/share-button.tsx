@@ -7,6 +7,7 @@ import { Share } from 'lucide-react';
 const ShareButton = () => {
   const handleShare = async () => {
     if (navigator.share) {
+      console.log(window.location.href);
       try {
         await navigator.share({
           title: document.title,
