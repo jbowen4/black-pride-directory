@@ -10,8 +10,6 @@ const ShareButton = () => {
       console.log(window.location.href);
       try {
         await navigator.share({
-          title: document.title,
-          text: 'Check this out!',
           url: window.location.href,
         });
         console.log('Page shared successfully');
@@ -19,9 +17,8 @@ const ShareButton = () => {
         console.error('Sharing failed:', error);
       }
     } else {
-      alert(
-        'Sharing not supported on this browser. Try Safari on iPhone or macOS.'
-      );
+      // Fallback if Web Share API is not supported
+      window.open(`sms:&body=${encodeURIComponent(window.location.href)}`);
     }
   };
 
