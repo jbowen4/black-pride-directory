@@ -17,6 +17,6 @@ rsvp_required: False
 price: 100
 instagram: ''
 website: 'https://solo.to/railsmarketinggroup'
-description: 'Celebrate Chicago Black Pride 2025 at The Bloq Party with music, dancing, and community vibes at The Promontory.'
+description: 'Celebrate NYC Black Pride 2025 at The Bloq Party with music, dancing, and community vibes at The Promontory.'
 categories: ['Pride', 'Party']
 ---

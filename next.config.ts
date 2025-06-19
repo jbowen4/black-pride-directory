@@ -36,6 +36,18 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'images.squarespace-cdn.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'partiful.imgix.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'dice-media.imgix.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'instagram.ftpa1-1.fna.fbcdn.net',
+      },
     ],
   },
 };

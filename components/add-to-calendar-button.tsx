@@ -10,6 +10,7 @@ export default function AddToCalendarButton({ event }: { event: Event }) {
   const [showModal, setShowModal] = useState(false);
 
   const {
+    slug,
     event_name = 'Event',
     location_name = 'TBD',
     street_address = '',
@@ -43,46 +44,54 @@ export default function AddToCalendarButton({ event }: { event: Event }) {
 
   const generateICS = () => {
     const icsContent = `BEGIN:VCALENDAR
-    VERSION:2.0
-    CALSCALE:GREGORIAN
-    METHOD:PUBLISH
-    BEGIN:VTIMEZONE
-    TZID:${time_zone}
-    X-LIC-LOCATION:${time_zone}
-    BEGIN:DAYLIGHT
-    TZOFFSETFROM:-0500
-    TZOFFSETTO:-0400
-    TZNAME:EDT
-    DTSTART:19700308T020000
-    RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU
-    END:DAYLIGHT
-    BEGIN:STANDARD
-    TZOFFSETFROM:-0400
-    TZOFFSETTO:-0500
-    TZNAME:EST
-    DTSTART:19701101T020000
-    RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
-    END:STANDARD
-    END:VTIMEZONE
-    BEGIN:VEVENT
-    SUMMARY:${event_name}
-    DESCRIPTION:${description}
-    LOCATION:${location}
-    DTSTART;TZID=${time_zone}:${start}
-    DTEND;TZID=${time_zone}:${end}
-    END:VEVENT
-    END:VCALENDAR`;
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:${time_zone}
+X-LIC-LOCATION:${time_zone}
+BEGIN:DAYLIGHT
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0400
+TZNAME:EDT
+DTSTART:19700308T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:-0400
+TZOFFSETTO:-0500
+TZNAME:EST
+DTSTART:19701101T020000
+RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+SUMMARY:${event_name}
+DESCRIPTION:${description}
+LOCATION:${location}
+DTSTART;TZID=${time_zone}:${start}
+DTEND;TZID=${time_zone}:${end}
+END:VEVENT
+END:VCALENDAR`;
 
-    const blob = new Blob([icsContent], {
-      type: 'text/calendar;charset=utf-8',
-    });
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'event.ics';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    // Create a data URL for the .ics file
+    const icsDataUrl =
+      'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsContent);
+
+    // For iOS, set window.location.href; for others, use anchor download
+    if (
+      /iPad|iPhone|iPod/.test(navigator.userAgent) &&
+      !(window as Window & { MSStream?: unknown }).MSStream
+    ) {
+      window.location.href = icsDataUrl;
+    } else {
+      const link = document.createElement('a');
+      link.href = icsDataUrl;
+      link.download = `${slug}-calendar-link.ics`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
   };
 
   const openGoogleCalendar = () => {

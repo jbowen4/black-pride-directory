@@ -16,6 +16,8 @@ export function formatDate(date: string) {
 export const categories = [
   'Pride',
   'Parade',
+  'Sapphic',
+  'Trans',
   'Educational',
   'Social',
   'Spiritual',
