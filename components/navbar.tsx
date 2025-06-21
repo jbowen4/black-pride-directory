@@ -15,6 +15,7 @@ export function Navbar({ orientation = 'horizontal' }: NavbarProps) {
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
     { name: 'Events', href: '/events' },
+    { name: 'Blog', href: '/blogs' },
   ];
 
   return (
