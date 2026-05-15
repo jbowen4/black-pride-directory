@@ -24,7 +24,12 @@ export function Header() {
 
         {/* Right side - CTA Button */}
         <div className='flex items-center gap-4'>
-          <Button className='hidden md:inline-flex' asChild>
+          <Button variant='outline' className='hidden md:inline-flex' asChild>
+            <Link href='/post'>Add an event</Link>
+          </Button>
+          <Button
+            className='hidden md:inline-flex bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground'
+            asChild>
             <Link href='/#subscribe'>Join mailing list</Link>
           </Button>
 
@@ -37,8 +42,11 @@ export function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent className='p-3' side='right'>
-              <div className='flex flex-col gap-6 py-6'>
+              <div className='flex flex-col gap-4 py-6'>
                 <Navbar orientation='vertical' />
+                <Button className='w-full' variant='outline' asChild>
+                  <Link href='/post'>Add an event</Link>
+                </Button>
                 <Button className='w-full' asChild>
                   <Link href='/#subscribe'>Join mailing list</Link>
                 </Button>

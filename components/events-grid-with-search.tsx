@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { EventMetadata } from '@/lib/events';
 import Image from 'next/image';
 import { CalendarIcon, MapPinIcon } from 'lucide-react';
-import { categories, city_names, formatDate } from '@/lib/utils';
+import { categories, city_names, formatDate, isStrapiImage } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -42,11 +42,11 @@ export default function EventsWithSearch({
       (city
         ? event.city?.toLowerCase() === city.toLowerCase() ||
           event.city_category?.toLowerCase() === city.toLowerCase()
-        : true) &&
-      (eventView === 'list' || eventView === 'map'
-        ? new Date(event.end_date ?? event.start_date ?? '') >=
-          new Date(new Date().toDateString())
         : true)
+      // &&(eventView === 'list' || eventView === 'map'
+      //   ? new Date(event.end_date ?? event.start_date ?? '') >=
+      //     new Date(new Date().toDateString())
+      //   : true)
     );
   });
 
@@ -123,19 +123,28 @@ export default function EventsWithSearch({
               <div className='bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg h-full flex flex-col'>
                 {/* Event image */}
                 <div className='relative h-48 w-full'>
-                  <Image
-                    src={
-                      event.image ||
-                      (event.city_category
-                        ? `/images/${event.city_category.toLowerCase().replace(/\s+/g, '-')}.jpg`
-                        : event.city
-                          ? `/images/${event.city.toLowerCase().replace(/\s+/g, '-')}.jpg`
-                          : '/images/black-gay-pride.png')
-                    }
-                    alt={event.event_name ?? ''}
-                    fill
-                    className='object-cover'
-                  />
+                  {isStrapiImage(event.image) ? (
+                    <Image
+                      src={`${process.env.NEXT_PUBLIC_STRAPI_CMS_URL}${event.image.url}`}
+                      alt={event.image.alternativeText ?? ''}
+                      fill
+                      className='object-cover'
+                    />
+                  ) : (
+                    <Image
+                      src={
+                        event.image ||
+                        (event.city_category
+                          ? `/images/${event.city_category.toLowerCase().replace(/\s+/g, '-')}.jpg`
+                          : event.city
+                            ? `/images/${event.city.toLowerCase().replace(/\s+/g, '-')}.jpg`
+                            : '/images/black-gay-pride.png')
+                      }
+                      alt={event.event_name ?? ''}
+                      fill
+                      className='object-cover'
+                    />
+                  )}
                 </div>
 
                 {/* Event details */}
@@ -147,7 +156,7 @@ export default function EventsWithSearch({
                   <div className='flex items-center text-muted-foreground mb-2'>
                     <MapPinIcon className='h-4 w-4 mr-1' />
                     <span className='text-sm'>
-                      {event.city}, {event.state}
+                      {typeof event.city === 'object' ? event.city_name! : event.city}, {event.state}
                     </span>
                   </div>
 

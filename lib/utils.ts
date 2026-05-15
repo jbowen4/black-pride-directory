@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import type { StrapiImage } from './collections';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -192,4 +193,18 @@ export function formatTimezone(timezoneString?: string): string {
     return '';
   }
   return '';
+}
+
+export function isStrapiImage(input: unknown): input is StrapiImage {
+  return (
+    typeof input === 'object' &&
+    input !== null &&
+    typeof (input as StrapiImage).id === 'number' &&
+    typeof (input as StrapiImage).documentId === 'string' &&
+    typeof (input as StrapiImage).name === 'string' &&
+    typeof (input as StrapiImage).width === 'number' &&
+    typeof (input as StrapiImage).height === 'number' &&
+    typeof (input as StrapiImage).ext === 'string' &&
+    typeof (input as StrapiImage).mime === 'string'
+  );
 }

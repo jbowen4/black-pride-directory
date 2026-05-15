@@ -1,6 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import matter from 'gray-matter';
+import { StrapiImage } from './collections';
 
 const rootDirectory = path.join(process.cwd(), 'content', 'events');
 
@@ -23,7 +24,7 @@ export type EventMetadata = {
   end_time?: string;
   time_zone?: string;
   organizer?: string;
-  image?: string;
+  image?: string | StrapiImage;
   rsvp_required?: boolean;
   price?: number;
   instagram?: string;
@@ -32,6 +33,7 @@ export type EventMetadata = {
   categories?: string[];
   city_category?: string; // New field for city category
   slug: string;
+  city_name?: string;
 };
 
 export async function getEventBySlug(slug: string): Promise<Event | null> {

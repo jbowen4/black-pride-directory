@@ -40,3 +40,45 @@ export type StrapiImage = {
   mime: string;
   [key: string]: any;
 };
+
+export type Organizer = {
+  id: number;
+  name: string;
+  description?: string;
+  image?: StrapiImage;
+  events?: Array<Event>;
+  [key: string]: any;
+};
+
+export type Event = {
+  id: number;
+  //documentId: string;
+  event_name: string;
+  description?: string;
+  start_datetime: Date;
+  end_datetime: Date;
+  location?: string;
+  image?: StrapiImage;
+  organizers?: Array<Organizer>;
+  sponsors?: Array<Sponsor>;
+  slug: string;
+  [key: string]: any;
+};
+
+export type Sponsor = {
+  id: number;
+  name: string;
+  description?: string;
+  image?: StrapiImage;
+  events?: Array<Event>;
+  [key: string]: any;
+};
+
+export type City = {
+  id: number;
+  name: string;
+  description?: string;
+  image?: StrapiImage;
+  events?: Array<Event>;
+  [key: string]: any;
+};
