@@ -3,8 +3,15 @@
 import Link from 'next/link';
 import { EventMetadata } from '@/lib/events';
 import Image from 'next/image';
+import { ImageWithFallback } from '@/components/ui/image-with-fallback';
 import { CalendarIcon, MapPinIcon } from 'lucide-react';
-import { categories, city_names, formatDate, isStrapiImage } from '@/lib/utils';
+import {
+  categories,
+  city_names,
+  formatDate,
+  getEventPlaceholder,
+  isStrapiImage,
+} from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -30,25 +37,36 @@ export default function EventsWithSearch({
   const [category, setCategory] = useState('');
   const [city, setCity] = useState('');
   const [eventView, setEventView] = useState<ToggleOption>('list');
-  const filteredEvents = events.filter((event) => {
-    return (
-      event.event_name?.toLowerCase().includes(query.toLowerCase()) &&
-      (category
-        ? Array.isArray(event.categories) &&
-          event.categories
-            .map((c: string) => c.toLowerCase())
-            .includes(category.toLowerCase())
-        : true) &&
-      (city
-        ? event.city?.toLowerCase() === city.toLowerCase() ||
-          event.city_category?.toLowerCase() === city.toLowerCase()
-        : true)
-      // &&(eventView === 'list' || eventView === 'map'
-      //   ? new Date(event.end_date ?? event.start_date ?? '') >=
-      //     new Date(new Date().toDateString())
-      //   : true)
-    );
-  });
+  const [showPast, setShowPast] = useState(false);
+
+  const isUpcoming = (event: EventMetadata) => {
+    if (!event.start_date) return true;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const relevantDate = new Date(event.end_date ?? event.start_date);
+    relevantDate.setHours(0, 0, 0, 0);
+    return relevantDate >= today;
+  };
+
+  const pastCount = events.filter((e) => !isUpcoming(e)).length;
+
+  const filteredEvents = events
+    .filter((event) => showPast || isUpcoming(event))
+    .filter((event) => {
+      return (
+        event.event_name?.toLowerCase().includes(query.toLowerCase()) &&
+        (category
+          ? Array.isArray(event.categories) &&
+            event.categories
+              .map((c: string) => c.toLowerCase())
+              .includes(category.toLowerCase())
+          : true) &&
+        (city
+          ? event.city?.toLowerCase() === city.toLowerCase() ||
+            event.city_category?.toLowerCase() === city.toLowerCase()
+          : true)
+      );
+    });
 
   const resetFields = () => {
     setQuery('');
@@ -109,8 +127,26 @@ export default function EventsWithSearch({
         </div>
       </div>
 
-      <div className='w-full flex justify-start pb-10'>
+      <div className='flex items-center gap-2 text-sm md:text-lg text-muted-foreground pb-4'>
+        <span>
+          {showPast ? 'Showing all events' : 'Showing upcoming events'}
+        </span>
+        {pastCount > 0 && (
+          <button
+            onClick={() => setShowPast((v) => !v)}
+            className='underline underline-offset-2 hover:text-foreground transition-colors cursor-pointer'>
+            {showPast
+              ? 'Show upcoming only'
+              : `Show past events (${pastCount})`}
+          </button>
+        )}
+      </div>
+
+      <div className='w-full flex justify-between items-center pb-10'>
         <TogglePill value={eventView} onChange={setEventView} />
+        <span className='text-lg md:text-xl font-bold text-black'>
+          {filteredEvents.length} events
+        </span>
       </div>
 
       {eventView === 'list' && (
@@ -131,15 +167,8 @@ export default function EventsWithSearch({
                       className='object-cover'
                     />
                   ) : (
-                    <Image
-                      src={
-                        event.image ||
-                        (event.city_category
-                          ? `/images/${event.city_category.toLowerCase().replace(/\s+/g, '-')}.jpg`
-                          : event.city
-                            ? `/images/${event.city.toLowerCase().replace(/\s+/g, '-')}.jpg`
-                            : '/images/black-gay-pride.png')
-                      }
+                    <ImageWithFallback
+                      src={event.image || getEventPlaceholder(event)}
                       alt={event.event_name ?? ''}
                       fill
                       className='object-cover'
@@ -156,7 +185,10 @@ export default function EventsWithSearch({
                   <div className='flex items-center text-muted-foreground mb-2'>
                     <MapPinIcon className='h-4 w-4 mr-1' />
                     <span className='text-sm'>
-                      {typeof event.city === 'object' ? event.city_name! : event.city}, {event.state}
+                      {typeof event.city === 'object'
+                        ? event.city_name!
+                        : event.city}
+                      , {event.state}
                     </span>
                   </div>
 

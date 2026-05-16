@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import { ImageWithFallback } from '@/components/ui/image-with-fallback';
 import Link from 'next/link';
 import { CalendarIcon, MapPinIcon } from 'lucide-react';
 
@@ -20,7 +20,7 @@ export function EventCard({ event }: { event: Event }) {
       <div className='bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg h-full flex flex-col'>
         {/* Event image */}
         <div className='relative h-48 w-full'>
-          <Image
+          <ImageWithFallback
             src={event.image || '/placeholder.svg'}
             alt={event.name}
             fill

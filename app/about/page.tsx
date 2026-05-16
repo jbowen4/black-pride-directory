@@ -66,18 +66,12 @@ export default function AboutPage() {
           <h2 className='text-3xl font-bold text-center mb-10'>
             Meet our team
           </h2>
-          <div className='grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-2xl mx-auto'>
+          <div className='grid grid-cols-1 gap-8 max-w-2xl mx-auto'>
             <TeamMember
               name='Josh Bowen'
-              role='Founder & Executive Director'
+              role='Creator'
               description='Josh is passionate about creating inclusive spaces for the Black LGBTQ+ community.'
               imageSrc='/images/profilepic.jpg'
-            />
-            <TeamMember
-              name='Marcus Williams'
-              role='Community Outreach Director'
-              description='Marcus works with organizations across the country to expand our network of events.'
-              imageSrc='/placeholder.svg?height=200&width=200'
             />
           </div>
         </div>

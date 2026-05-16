@@ -433,8 +433,8 @@ def main():
     parser.add_argument("input_file", help="Path to .csv or .xlsx source file")
     parser.add_argument(
         "--output-dir", "-o",
-        default="events_md",
-        help="Directory to write .md files into (default: ./events_md)"
+        default="content/events/dc-pride-2026",
+        help="Directory to write .md files into (default: ./content/events/dc-pride-2026)"
     )
     args = parser.parse_args()
 

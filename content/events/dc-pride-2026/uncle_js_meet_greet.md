@@ -1,0 +1,22 @@
+---
+event_name: 'Uncle J''s Meet & Greet'
+location_name: 'The Green Lantern'
+street_address: '1335 Green Ct NW'
+city: 'Washington'
+city_category: 'Washington DC'
+state: 'DC'
+zip_code: ''
+country: 'US'
+start_date: '5/23/2026'
+start_time: '5:00 PM'
+end_time: '10:30 PM'
+time_zone: 'America/New_York'
+organizer: 'Big Boy Pride'
+image: ''
+rsvp_required: False
+price: '$5'
+instagram: 'the_official_big_boy_pride'
+website: ''
+description: 'Uncle J''s Meet & Greet is a DC Black Pride pride event at The Green Lantern in Washington on May 23, 2026 beginning at 5:00 PM hosted by Big Boy Pride.'
+categories: ['Pride', 'Social', 'Sex+/Body+']
+---

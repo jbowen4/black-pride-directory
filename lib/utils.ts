@@ -21,6 +21,10 @@ export const categories = [
   'Trans',
   'Educational',
   'Social',
+  'Nightlife',
+  'Ballroom',
+  'Day Party',
+  'Pool Party',
   'Spiritual',
   'Activism',
   'Professional/Networking',
@@ -28,7 +32,7 @@ export const categories = [
   'Sex+/Body+',
   'Performance',
   'Festival',
-  'Art',
+  'Arts & Culture',
   'Food',
   'Sports',
   'Other',
@@ -52,7 +56,7 @@ export const formatDatetimeRange = (
   startDateString: string,
   startTimeString: string,
   endDateString: string,
-  endTimeString: string
+  endTimeString: string,
 ): { start: string; end: string } => {
   function parseDateTime(dateString: string, timeString: string): Date | null {
     try {
@@ -162,7 +166,7 @@ export function formatLocation(
   city: string,
   state: string,
   zipcode: string,
-  country: string
+  country: string,
 ): string {
   if (!street_address || !city || !state || !zipcode || !country) {
     return '';
@@ -193,6 +197,40 @@ export function formatTimezone(timezoneString?: string): string {
     return '';
   }
   return '';
+}
+
+const CITY_IMAGE_MAP: Record<string, string> = {
+  'washington dc': '/images/washington-dc.png',
+  atlanta: '/images/atlanta.jpg',
+  chicago: '/images/chicago.jpg',
+  dallas: '/images/dallas.jpg',
+  houston: '/images/houston.jpg',
+  'los angeles': '/images/los-angeles.jpg',
+  miami: '/images/miami.jpg',
+  'new york': '/images/new-york.jpg',
+  orlando: '/images/orlando.jpeg',
+  philadelphia: '/images/philadelphia.jpg',
+};
+
+const GENERAL_PLACEHOLDERS = [
+  '/images/black-gay-pride.png',
+  '/images/black-pride.jpeg',
+  '/images/black_pride.jpg',
+];
+
+export function getEventPlaceholder(event: {
+  slug: string;
+  city_category?: string;
+  city?: string;
+}): string {
+  const cityKey = (event.city_category ?? event.city ?? '')
+    .toLowerCase()
+    .trim();
+  if (CITY_IMAGE_MAP[cityKey]) return CITY_IMAGE_MAP[cityKey];
+  const charSum = event.slug
+    .split('')
+    .reduce((acc, c) => acc + c.charCodeAt(0), 0);
+  return GENERAL_PLACEHOLDERS[charSum % GENERAL_PLACEHOLDERS.length];
 }
 
 export function isStrapiImage(input: unknown): input is StrapiImage {

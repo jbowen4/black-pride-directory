@@ -3,10 +3,10 @@
 Upload DC Black Pride .md event files to a local Strapi instance.
 
 Usage:
-    python upload_to_strapi.py --token YOUR_TOKEN [--dir ./events_md] [--dry-run]
+    python upload_to_strapi.py --token YOUR_TOKEN [--dir ./content/events/dc-pride-2026] [--dry-run]
 
 Options:
-    --dir         Directory containing .md files        (default: ./events_md)
+    --dir         Directory containing .md files        (default: ./content/events/dc-pride-2026)
     --url         Strapi base URL                       (default: http://localhost:1337)
     --token       Strapi API token (or set STRAPI_TOKEN env var)
     --collection  Strapi collection slug                (default: events)
@@ -388,7 +388,7 @@ def main():
     parser = argparse.ArgumentParser(
         description="Upload .md event files to a local Strapi instance."
     )
-    parser.add_argument("--dir", default="./events_md")
+    parser.add_argument("--dir", default="./content/events/dc-pride-2026")
     parser.add_argument("--url", default=STRAPI_URL)
     parser.add_argument("--token", default=os.environ.get("STRAPI_TOKEN", API_TOKEN))
     parser.add_argument("--collection", default=COLLECTION)

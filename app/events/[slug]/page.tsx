@@ -1,7 +1,7 @@
 import { getEventBySlug, getEvents } from '@/lib/events';
 import { notFound } from 'next/navigation';
 import React from 'react';
-import Image from 'next/image';
+import { ImageWithFallback } from '@/components/ui/image-with-fallback';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Instagram, Globe } from 'lucide-react';
@@ -110,7 +110,7 @@ export default async function EventPage({
         <div className='flex justify-center mb-8'>
           <div className='relative w-full max-h-[400px] overflow-hidden rounded-lg'>
             {imageUrl && (
-              <Image
+              <ImageWithFallback
                 src={imageUrl}
                 alt={event_name || 'Placeholder Image'}
                 width={1200}

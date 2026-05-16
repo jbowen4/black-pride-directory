@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { EventMetadata } from '@/lib/events';
-import Image from 'next/image';
+import { ImageWithFallback } from '@/components/ui/image-with-fallback';
 import { CalendarIcon, MapPinIcon } from 'lucide-react';
-import { formatDate } from '@/lib/utils';
+import { formatDate, getEventPlaceholder } from '@/lib/utils';
 
 export default function Events({ events }: { events: EventMetadata[] }) {
   return (
@@ -15,15 +15,8 @@ export default function Events({ events }: { events: EventMetadata[] }) {
           <div className='bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg h-full flex flex-col'>
             {/* Event image */}
             <div className='relative h-48 w-full'>
-              <Image
-                src={
-                  event.image ||
-                  (event.city_category
-                    ? `/images/${event.city_category.toLowerCase().replace(/\s+/g, '-')}.jpg`
-                    : event.city
-                      ? `/images/${event.city.toLowerCase().replace(/\s+/g, '-')}.jpg`
-                      : '/images/black-gay-pride.png')
-                }
+              <ImageWithFallback
+                src={event.image || getEventPlaceholder(event)}
                 alt={event.event_name ?? ''}
                 fill
                 className='object-cover'

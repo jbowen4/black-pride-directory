@@ -25,7 +25,9 @@ export function Header() {
         {/* Right side - CTA Button */}
         <div className='flex items-center gap-4'>
           <Button variant='outline' className='hidden md:inline-flex' asChild>
-            <Link href='/post'>Add an event</Link>
+            <Link href='https://docs.google.com/forms/d/e/1FAIpQLSf-JHZOP_snoEjeIV_ljoL8n6MGN8WgjOn3fk3UZniSEf0mCg/viewform?usp=publish-editor'>
+              Add an event
+            </Link>
           </Button>
           <Button
             className='hidden md:inline-flex bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground'
@@ -45,7 +47,9 @@ export function Header() {
               <div className='flex flex-col gap-4 py-6'>
                 <Navbar orientation='vertical' />
                 <Button className='w-full' variant='outline' asChild>
-                  <Link href='/post'>Add an event</Link>
+                  <Link href='https://docs.google.com/forms/d/e/1FAIpQLSf-JHZOP_snoEjeIV_ljoL8n6MGN8WgjOn3fk3UZniSEf0mCg/viewform?usp=publish-editor'>
+                    Add an event
+                  </Link>
                 </Button>
                 <Button className='w-full' asChild>
                   <Link href='/#subscribe'>Join mailing list</Link>

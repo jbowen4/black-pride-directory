@@ -15,7 +15,7 @@ export function Navbar({ orientation = 'horizontal' }: NavbarProps) {
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
     { name: 'Events', href: '/events' },
-    { name: 'Blog', href: '/blogs' },
+    // { name: 'Blog', href: '/blogs' },
   ];
 
   return (
@@ -24,7 +24,7 @@ export function Navbar({ orientation = 'horizontal' }: NavbarProps) {
         'flex',
         orientation === 'horizontal'
           ? 'flex-row items-center space-x-6'
-          : 'flex-col space-y-4'
+          : 'flex-col space-y-4',
       )}>
       {navItems.map((item) => (
         <Link
@@ -34,7 +34,7 @@ export function Navbar({ orientation = 'horizontal' }: NavbarProps) {
             'text-sm font-medium transition-colors hover:text-primary',
             pathname === item.href
               ? 'text-primary font-semibold'
-              : 'text-muted-foreground'
+              : 'text-muted-foreground',
           )}>
           {item.name}
         </Link>
