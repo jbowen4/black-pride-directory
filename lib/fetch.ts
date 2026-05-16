@@ -31,39 +31,50 @@ export type CollectionTypeMap = {
 export async function fetchAll<T extends CollectionType>(
   collection: T
 ): Promise<CollectionTypeMap[T][]> {
-  const options = {
-    headers: {
-      Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-    },
-  };
+  const baseUrl = process.env.NEXT_PUBLIC_STRAPI_CMS_URL;
+  if (!baseUrl) return [];
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 10000);
+
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_CMS_URL}/api/${collection}?populate=*`,
-      options
+      `${baseUrl}/api/${collection}?populate=*`,
+      {
+        headers: { Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}` },
+        signal: controller.signal,
+      }
     );
     const response = await res.json();
     return response.data as CollectionTypeMap[T][];
-  } catch (error) {
-    console.error('Error fetching data:', error);
+  } catch {
     return [];
+  } finally {
+    clearTimeout(timeout);
   }
 }
 
 export async function fetchOne(collection: CollectionType, documentId: string) {
-  const options = {
-    headers: {
-      Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-    },
-  };
+  const baseUrl = process.env.NEXT_PUBLIC_STRAPI_CMS_URL;
+  if (!baseUrl) return undefined;
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 10000);
+
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_CMS_URL}/api/${collection}/${documentId}?populate=*`,
-      options
+      `${baseUrl}/api/${collection}/${documentId}?populate=*`,
+      {
+        headers: { Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}` },
+        signal: controller.signal,
+      }
     );
     const response = await res.json();
     return response.data;
-  } catch (error) {
-    console.error('Error fetching data:', error);
+  } catch {
+    return undefined;
+  } finally {
+    clearTimeout(timeout);
   }
 }
 
@@ -71,36 +82,34 @@ export async function postOne<T extends CollectionType>(
   collection: T,
   data: object
 ): Promise<CollectionTypeMap[T] | undefined> {
-  const options = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${process.env.STRAPI_FULL_ACCESS_API_TOKEN}`,
-    },
-    // TODO: Check the data structure against the expected type before sending
-    body: JSON.stringify({ data }),
-  };
+  const baseUrl = process.env.NEXT_PUBLIC_STRAPI_CMS_URL;
+  if (!baseUrl) return undefined;
+
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_CMS_URL}/api/${collection}`,
-      options
+      `${baseUrl}/api/${collection}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${process.env.STRAPI_FULL_ACCESS_API_TOKEN}`,
+        },
+        body: JSON.stringify({ data }),
+      }
     );
     if (!res.ok) {
       const errorText = await res.text();
-      console.error(`❌ Failed to POST — Status: ${res.status}`);
-      console.error('Response text:', errorText);
-      //res.text().message
+      console.error(`Failed to POST — Status: ${res.status}`, errorText);
       return undefined;
     }
     const response = await res.json();
     if (!response?.data) {
-      console.error('❌ Unexpected response format:', response);
+      console.error('Unexpected response format:', response);
       return undefined;
     }
     return response.data;
   } catch (error) {
-    console.log('ERRORRRORRORRR');
-    console.log(error);
     console.error('Error posting data:', error);
+    return undefined;
   }
 }
