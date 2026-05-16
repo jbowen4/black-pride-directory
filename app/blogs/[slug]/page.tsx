@@ -3,12 +3,12 @@ import React from 'react';
 import Image from 'next/image';
 import { Metadata } from 'next';
 import { fetchAll, fetchOne, CollectionType } from '@/lib/fetch';
+import { Category } from '@/lib/collections';
 import { Calendar } from 'lucide-react';
 
 export async function generateStaticParams() {
   const blogs = await fetchAll(CollectionType.BlogPost);
-  const slugs = blogs.map((blog: any) => ({ slug: blog.slug }));
-  return slugs;
+  return blogs.map((blog) => ({ slug: blog.documentId }));
 }
 
 export async function generateMetadata({
@@ -19,13 +19,8 @@ export async function generateMetadata({
   const { slug } = await params;
   const blog_post = await fetchOne(CollectionType.BlogPost, slug);
 
-  const {
-    title,
-    description,
-    image,
-    //image: { url },
-  } = blog_post;
-
+  const title = blog_post?.title ?? 'Black LGBTQ+ Blog Post';
+  const description = blog_post?.description ?? '';
   const url = null;
 
   return {
@@ -70,10 +65,7 @@ export default async function BlogPostPage({
     title,
     description,
     image,
-    //image: { url },
   } = blog_post;
-
-  const url = null;
 
   return (
     <div>
@@ -160,7 +152,7 @@ export default async function BlogPostPage({
           <div className='mb-2'>
             <h2 className='text-lg font-semibold mt-12 mb-4'>Categories</h2>
             <div className='flex flex-wrap gap-2'>
-              {blog_post.categories.map((category: any) => (
+              {blog_post.categories.map((category: Category) => (
                 <span
                   key={category.id}
                   className='bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-xs'>

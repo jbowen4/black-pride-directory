@@ -6,10 +6,10 @@ export type BlogPost = {
   author: Author;
   description: string;
   published_date: Date;
-  content: Array<Object>;
+  content: Array<object>;
   image?: StrapiImage;
   categories?: Array<Category>;
-  [key: string]: any;
+  [key: string]: unknown;
 };
 
 export type Category = {
@@ -38,7 +38,7 @@ export type StrapiImage = {
   url?: string;
   ext: string;
   mime: string;
-  [key: string]: any;
+  [key: string]: unknown;
 };
 
 export type Organizer = {
@@ -47,12 +47,12 @@ export type Organizer = {
   description?: string;
   image?: StrapiImage;
   events?: Array<Event>;
-  [key: string]: any;
+  [key: string]: unknown;
 };
 
 export type Event = {
   id: number;
-  //documentId: string;
+  documentId: string;
   event_name: string;
   description?: string;
   start_datetime: Date;
@@ -62,7 +62,7 @@ export type Event = {
   organizers?: Array<Organizer>;
   sponsors?: Array<Sponsor>;
   slug: string;
-  [key: string]: any;
+  [key: string]: unknown;
 };
 
 export type Sponsor = {
@@ -71,7 +71,7 @@ export type Sponsor = {
   description?: string;
   image?: StrapiImage;
   events?: Array<Event>;
-  [key: string]: any;
+  [key: string]: unknown;
 };
 
 export type City = {
@@ -80,5 +80,5 @@ export type City = {
   description?: string;
   image?: StrapiImage;
   events?: Array<Event>;
-  [key: string]: any;
+  [key: string]: unknown;
 };

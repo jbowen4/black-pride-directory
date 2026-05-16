@@ -7,6 +7,7 @@ type Props = Omit<ImageProps, 'onError'> & { fallbackSrc?: string };
 export function ImageWithFallback({
   src,
   fallbackSrc = '/images/black-gay-pride.png',
+  alt,
   className,
   ...props
 }: Props) {
@@ -20,6 +21,7 @@ export function ImageWithFallback({
       )}
       <Image
         {...props}
+        alt={alt}
         src={imgSrc}
         className={`${className ?? ''} transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
         onLoad={() => setIsLoading(false)}

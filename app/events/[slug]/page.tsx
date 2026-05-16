@@ -9,7 +9,7 @@ import { formatDate } from '@/lib/utils';
 import { Metadata } from 'next';
 import ShareAndAddToCalendar from '@/components/share-and-calendar';
 import { getCityBySlug } from '@/lib/cities';
-import { formatTimezone } from '@/lib/utils';
+import { formatTimezone, isStrapiImage } from '@/lib/utils';
 
 export async function generateStaticParams() {
   const events = await getEvents();
@@ -31,10 +31,13 @@ export async function generateMetadata({
 
   const title = event?.metadata.event_name || 'Black LGBTQ+ Event Details';
   const description = event?.metadata.description || 'Check out this event!';
-  const imageUrl =
+  const rawImageUrl =
     event?.metadata.image ||
     city?.metadata.image ||
     '/images/black-gay-pride.jpg';
+  const imageUrl = isStrapiImage(rawImageUrl)
+    ? `${process.env.NEXT_PUBLIC_STRAPI_CMS_URL}${rawImageUrl.url}`
+    : rawImageUrl;
 
   return {
     title,
@@ -100,8 +103,10 @@ export default async function EventPage({
 
   const citySlug = (city_category || city)?.toLowerCase().replace(/\s+/g, '-');
   const cityData = citySlug ? await getCityBySlug(citySlug) : null;
-  const imageUrl =
-    image || cityData?.metadata.image || '/images/black-gay-pride.jpg';
+  const rawImage = image || cityData?.metadata.image || '/images/black-gay-pride.jpg';
+  const imageUrl = isStrapiImage(rawImage)
+    ? `${process.env.NEXT_PUBLIC_STRAPI_CMS_URL}${rawImage.url}`
+    : rawImage;
 
   return (
     <div>

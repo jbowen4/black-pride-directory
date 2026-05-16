@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import React from 'react';
+import { BlogPost } from '@/lib/collections';
 
-const BlogCard = ({ blog }: any) => {
+const BlogCard = ({ blog }: { blog: BlogPost }) => {
   return (
     <Link
       key={blog.slug}
@@ -45,7 +46,7 @@ const BlogCard = ({ blog }: any) => {
           <div>
             {blog.categories && blog.categories.length > 0 && (
               <div className='flex flex-wrap gap-2 mt-2'>
-                {blog.categories.map((category: any) => (
+                {blog.categories.map((category) => (
                   <span
                     key={category.id}
                     className='bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-xs'>

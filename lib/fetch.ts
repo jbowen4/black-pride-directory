@@ -61,7 +61,6 @@ export async function fetchOne(collection: CollectionType, documentId: string) {
       options
     );
     const response = await res.json();
-    console.log(response);
     return response.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -70,7 +69,7 @@ export async function fetchOne(collection: CollectionType, documentId: string) {
 
 export async function postOne<T extends CollectionType>(
   collection: T,
-  data: Object
+  data: object
 ): Promise<CollectionTypeMap[T] | undefined> {
   const options = {
     method: 'POST',

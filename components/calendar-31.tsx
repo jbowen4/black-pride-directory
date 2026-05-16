@@ -5,7 +5,7 @@ import * as React from 'react';
 import { Calendar, CalendarDayButton } from '@/components/ui/calendar';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { EventMetadata } from '@/lib/events';
-import { formatDate, formatTimezone } from '@/lib/utils';
+import { formatDate, formatTimezone, isStrapiImage } from '@/lib/utils';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -119,7 +119,9 @@ export default function Calendar31({ events }: { events: EventMetadata[] }) {
                         <div className='absolute right-0 top-0 h-full w-[50px] md:w-[100px] lg:w-[200px] rounded-r-md overflow-hidden shadow'>
                           <Image
                             src={
-                              event.image ||
+                              (isStrapiImage(event.image)
+                                ? `${process.env.NEXT_PUBLIC_STRAPI_CMS_URL}${event.image.url}`
+                                : event.image) ||
                               (event.city_category
                                 ? `/images/${event.city_category.toLowerCase().replace(/\s+/g, '-')}.jpg`
                                 : event.city

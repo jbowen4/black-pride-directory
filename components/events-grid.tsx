@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { EventMetadata } from '@/lib/events';
 import { ImageWithFallback } from '@/components/ui/image-with-fallback';
 import { CalendarIcon, MapPinIcon } from 'lucide-react';
-import { formatDate, getEventPlaceholder } from '@/lib/utils';
+import { formatDate, getEventPlaceholder, isStrapiImage } from '@/lib/utils';
 
 export default function Events({ events }: { events: EventMetadata[] }) {
   return (
@@ -16,7 +16,11 @@ export default function Events({ events }: { events: EventMetadata[] }) {
             {/* Event image */}
             <div className='relative h-48 w-full'>
               <ImageWithFallback
-                src={event.image || getEventPlaceholder(event)}
+                src={
+                  (isStrapiImage(event.image)
+                    ? `${process.env.NEXT_PUBLIC_STRAPI_CMS_URL}${event.image.url}`
+                    : event.image) || getEventPlaceholder(event)
+                }
                 alt={event.event_name ?? ''}
                 fill
                 className='object-cover'

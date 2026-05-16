@@ -24,8 +24,8 @@ import {
 } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { X, Calendar, MapPin, Users, DollarSign, Globe } from 'lucide-react';
+import Image from 'next/image';
 import { Category, Organizer, Sponsor } from '@/lib/collections';
-import { CollectionType, CollectionTypeMap, postOne } from '@/lib/fetch';
 
 const timeZones = [
   'UTC',
@@ -175,7 +175,7 @@ export default function EventForm({
       return;
     }
 
-    const data: Record<string, any> = {};
+    const data: Record<string, unknown> = {};
     formData.forEach((value, key) => {
       if (data[key]) {
         // handle multiple values (e.g., checkboxes)
@@ -229,7 +229,7 @@ export default function EventForm({
         body: JSON.stringify({ data }),
       });
 
-      const result = await response.json();
+      await response.json();
     } catch (error) {
       console.log('Error submitting form:', error);
       //setError('An error occurred while submitting the form.');
@@ -536,9 +536,12 @@ export default function EventForm({
                 />
                 {imagePreview && (
                   <div className='relative w-full max-w-md'>
-                    <img
+                    <Image
                       src={imagePreview || '/placeholder.svg'}
                       alt='Event preview'
+                      width={800}
+                      height={192}
+                      unoptimized
                       className='w-full h-48 object-cover rounded-lg border'
                     />
                     <Button

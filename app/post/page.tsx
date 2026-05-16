@@ -1,9 +1,8 @@
 import EventForm from '@/components/event-form';
-import { CollectionType, fetchAll, postOne } from '@/lib/fetch';
+import { CollectionType, fetchAll } from '@/lib/fetch';
 
 export default async function PostPage() {
   const categories = await fetchAll(CollectionType.Category);
-  const cities = await fetchAll(CollectionType.City);
   const organizers = await fetchAll(CollectionType.Organizer);
   const sponsors = await fetchAll(CollectionType.Sponsor);
 

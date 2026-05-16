@@ -5,12 +5,10 @@ import { CollectionType, fetchAll } from '@/lib/fetch';
 export default async function EventPage() {
   const events = await getEvents();
   const extraEvents = await fetchAll(CollectionType.Event);
-  console.log(extraEvents);
   extraEvents.forEach((event) => {
     event.slug = event.documentId;
   });
   events.push(...extraEvents);
-  console.log(events);
 
   return (
     <>
